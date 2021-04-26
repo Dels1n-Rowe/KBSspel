@@ -45,7 +45,7 @@ public class Menuscherm extends ApplicationAdapter  {
         sprite = new SpriteBatch();
 
         font = new BitmapFont();
-        font.setColor(Color.GOLD);
+        font.setColor(Color.BLUE);
 
         tabel = new Table();
         tabel.setWidth(stage.getWidth());
