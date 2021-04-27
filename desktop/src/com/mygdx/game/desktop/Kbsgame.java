@@ -109,7 +109,7 @@ public class Kbsgame extends ApplicationAdapter {
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
-            angle = 0;
+            angle = 90;
             spawnRaindrop();
         }
 
