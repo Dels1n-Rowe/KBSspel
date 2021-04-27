@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
@@ -21,13 +22,9 @@ public class Kbsgame extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Texture bullet;
     private Rectangle heroBody;
+    private Sprite test1;
+    private float angle;
     //ShapeRenderer shapeRenderer;
-
-
-
-    float r = MathUtils.random();
-    float g = MathUtils.random();
-    float b = MathUtils.random();
 
     @Override
 
@@ -44,6 +41,9 @@ public class Kbsgame extends ApplicationAdapter {
         heroBody.y = 500;
         heroBody.width =64;
         heroBody. height = 64;
+        test1 = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
+
+
 
 
 
@@ -72,50 +72,50 @@ public class Kbsgame extends ApplicationAdapter {
         camera.update();
 
         batch.setProjectionMatrix(camera.combined);
-        batch.begin();
-        batch.draw(heroImage, heroBody.x, heroBody.y);
-        batch.end();
+        draw();
 
-        Gdx.gl.glClearColor(r, g, .25f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+
+    }
+
+    public void draw(){
+        batch.begin();
+        test1.setPosition(heroBody.x,heroBody.y);
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)){
-            r = MathUtils.random();
-            g = MathUtils.random();
-            b = MathUtils.random();
+            angle = 360;
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)){
-            r = MathUtils.random();
-            g = MathUtils.random();
-            b = MathUtils.random();
+            angle = 180;
+
+
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)){
-            r = MathUtils.random();
-            g = MathUtils.random();
-            b = MathUtils.random();
+            angle = 270;
+
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)){
-            r = MathUtils.random();
-            g = MathUtils.random();
-            b = MathUtils.random();
+            angle = 0;
+
+
         }
 
+        test1.setRotation(angle);
 
-
-
-
-
+        test1.draw(batch);
+        batch.end();
     }
 
 
-        //
 
-    /*public void dispose () {
-        shapeRenderer.dispose();
+
+
+
+    public void dispose () {
+        batch.dispose();
     }
-*/
     }
 
