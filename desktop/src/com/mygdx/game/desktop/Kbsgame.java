@@ -20,26 +20,17 @@ import java.util.Iterator;
 
 public class Kbsgame extends ApplicationAdapter {
     private Texture enemyImage;
-    private Texture heroImage;
+    private Sprite heroImage;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Texture bullet;
     private Rectangle heroBody;
-    private Sprite test1;
     private float angle;
     private Array<Rectangle> bullets;
-    private Rectangle bulletBody;
-    private Sprite bulletSprite;
-
-    //
-
-     private boolean north = false;
+    private boolean north = false;
     private boolean east = false;
     private boolean west = false;
     private boolean south = false;
-
-
-    private long lastDropTime;
 
     @Override
 
@@ -50,24 +41,11 @@ public class Kbsgame extends ApplicationAdapter {
         camera.setToOrtho(false, 1200, 900);
         batch = new SpriteBatch();
         bullet = new Texture(Gdx.files.internal("droplet.png"));
-        heroImage = new Texture(Gdx.files.internal("bucket.png"));
         heroBody = new Rectangle();
         heroBody.x = 550;
         heroBody.y = 500;
-        bulletBody = new Rectangle();
-        bulletBody.x = 550;
-        bulletBody.y = 500;
-        bulletBody.width = 64;
-        bulletBody.height = 64;
-        heroBody.width = 64;
-        heroBody.height = 64;
-        test1 = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
-        bulletSprite = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
+        heroImage = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
         bullets = new Array<Rectangle>();
-        //spawnRaindrop();
-
-
-        ///
 
 
         //hero
@@ -85,7 +63,6 @@ public class Kbsgame extends ApplicationAdapter {
         raindrop.width = 64;
         raindrop.height = 64;
         bullets.add(raindrop);
-        // lastDropTime = TimeUtils.nanoTime();
     }
 
 
@@ -109,16 +86,11 @@ public class Kbsgame extends ApplicationAdapter {
 
         draw();
         shootDown();
-        //shootWest();
-        //draw();
-
-
     }
 
     public void draw() {
         batch.begin();
-        test1.setPosition(heroBody.x, heroBody.y);
-        bulletSprite.setPosition(bulletBody.x, bulletBody.y);
+        heroImage .setPosition(heroBody.x, heroBody.y);
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             angle = 360;
@@ -141,12 +113,12 @@ public class Kbsgame extends ApplicationAdapter {
             spawnRaindrop();
         }
 
-        test1.setRotation(angle);
+        heroImage.setRotation(angle);
 
         for (Rectangle raindrop : bullets) {
             batch.draw(bullet, raindrop.x, raindrop.y);
         }
-        test1.draw(batch);
+        heroImage.draw(batch);
         batch.end();
     }
 
