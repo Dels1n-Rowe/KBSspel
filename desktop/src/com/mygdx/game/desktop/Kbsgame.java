@@ -63,32 +63,32 @@ public class Kbsgame extends ApplicationAdapter {
 
     private void spawnNorthRaindrop() {
         Rectangle raindropN = new Rectangle();
-        raindropN.x = 800;
-        raindropN.y = 480;
+        raindropN.x = 550;
+        raindropN.y = 500;
         raindropN.width = 64;
         raindropN.height = 64;
         bulletsN.add(raindropN);
     }
     private void spawnWestRaindrop() {
         Rectangle raindropW = new Rectangle();
-        raindropW.x = 800;
-        raindropW.y = 480;
+        raindropW.x = 550;
+        raindropW.y = 500;
         raindropW.width = 64;
         raindropW.height = 64;
         bulletsW.add(raindropW);
     }
     private void spawnEastRaindrop() {
         Rectangle raindropE = new Rectangle();
-        raindropE.x = 800;
-        raindropE.y = 480;
+        raindropE.x = 550;
+        raindropE.y = 500;
         raindropE.width = 64;
         raindropE.height = 64;
         bulletsE.add(raindropE);
     }
     private void spawnSouthRaindrop() {
         Rectangle raindropS = new Rectangle();
-        raindropS.x = 800;
-        raindropS.y = 480;
+        raindropS.x = 550;
+        raindropS.y = 500;
         raindropS.width = 64;
         raindropS.height = 64;
         bulletsS.add(raindropS);
@@ -120,7 +120,6 @@ public class Kbsgame extends ApplicationAdapter {
         }
 
         draw();
-        //shootWest();
     }
 
     public void draw() {
