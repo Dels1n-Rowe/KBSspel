@@ -247,6 +247,10 @@ public class Kbsgame extends ApplicationAdapter {
             }
         }
 
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_5)){
+            kogels = 6;
+        }
+
         heroImage.setRotation(angle);
 
         for (Rectangle raindrop : bulletsS) {
