@@ -37,6 +37,7 @@ public class Kbsgame extends ApplicationAdapter {
     private Array<Rectangle> enemysRight;
     private BitmapFont font;
     private int kogels;
+    private int levens;
 
     private long laatsteEnemy;
     private int test = 1;
@@ -65,6 +66,7 @@ public class Kbsgame extends ApplicationAdapter {
         enemyImage = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
         font = new BitmapFont();
         kogels = 6;
+        levens = 6;
 
 
         //hero
@@ -184,6 +186,8 @@ public class Kbsgame extends ApplicationAdapter {
         batch.begin();
 
         font.draw(batch,"0" + String.valueOf(kogels), 1100, 50);
+
+        font.draw(batch, "levens 0" + String.valueOf(levens),50,50);
 
         if(test == 1){
         int randomGetal = MathUtils.random(1,4);
@@ -306,40 +310,52 @@ public class Kbsgame extends ApplicationAdapter {
     public void walkDown(){
         for (Iterator<Rectangle> iter = enemysUp.iterator(); iter.hasNext(); ) {
             Rectangle enemyU = iter.next();
-            enemyU.y -= 200 * Gdx.graphics.getDeltaTime();
+            enemyU.y -= 100 * Gdx.graphics.getDeltaTime();
             if (enemyU.y + 64 < 0) iter.remove();
             if (enemyU.y <= 500){
                 iter.remove();
+                if (levens >= 1) {
+                    levens--;
+                }
             }
         }
     }
     public void walkUp(){
         for (Iterator<Rectangle> iter = enemysDown.iterator(); iter.hasNext(); ) {
             Rectangle enemyD = iter.next();
-            enemyD.y += 200 * Gdx.graphics.getDeltaTime();
+            enemyD.y += 150 * Gdx.graphics.getDeltaTime();
             if (enemyD.y + 64 < 0) iter.remove();
             if (enemyD.y >= 500){
                 iter.remove();
+                if (levens >= 1) {
+                    levens--;
+                }
             }
         }
     }
     public void walkLeft(){
         for (Iterator<Rectangle> iter = enemysRight.iterator(); iter.hasNext(); ) {
             Rectangle enemyR = iter.next();
-            enemyR.x -= 200 * Gdx.graphics.getDeltaTime();
+            enemyR.x -= 100 * Gdx.graphics.getDeltaTime();
             if (enemyR.y + 64 < 0) iter.remove();
             if (enemyR.x <= 550){
                 iter.remove();
+                if (levens >= 1) {
+                    levens--;
+                }
             }
         }
     }
     public void walRight(){
         for (Iterator<Rectangle> iter = enemysLeft.iterator(); iter.hasNext(); ) {
             Rectangle enemyL = iter.next();
-            enemyL.x += 200 * Gdx.graphics.getDeltaTime();
+            enemyL.x += 150 * Gdx.graphics.getDeltaTime();
             if (enemyL.y + 64 < 0) iter.remove();
             if (enemyL.x >= 550){
                 iter.remove();
+                if (levens >= 1) {
+                    levens--;
+                }
             }
         }
     }
