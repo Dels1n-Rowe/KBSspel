@@ -91,40 +91,40 @@ public class Kbsgame extends ApplicationAdapter {
     }
 
     private void spawnEnemyLeft() {
-        Rectangle enemy = new Rectangle();
-        enemy.x = 50;
-        enemy.y = 500;
-        enemy.width = 64;
-        enemy.height = 64;
-        enemysLeft.add(enemy);
+        Rectangle enemyL = new Rectangle();
+        enemyL.x = 50;
+        enemyL.y = 500;
+        enemyL.width = 64;
+        enemyL.height = 64;
+        enemysLeft.add(enemyL);
         laatsteEnemy = TimeUtils.nanoTime();
     }
     private void spawnEnemyUp() {
-        Rectangle enemy = new Rectangle();
-        enemy.x = 550;
-        enemy.y = 800;
-        enemy.width = 64;
-        enemy.height = 64;
-        enemysUp.add(enemy);
+        Rectangle enemyU = new Rectangle();
+        enemyU.x = 550;
+        enemyU.y = 800;
+        enemyU.width = 64;
+        enemyU.height = 64;
+        enemysUp.add(enemyU);
         laatsteEnemy = TimeUtils.nanoTime();
     }
     private void spawnEnemyDown() {
-        Rectangle enemy = new Rectangle();
-        enemy.x = 550;
-        enemy.y = 50;
-        enemy.width = 64;
-        enemy.height = 64;
-        enemysDown.add(enemy);
+        Rectangle enemyD = new Rectangle();
+        enemyD.x = 550;
+        enemyD.y = 50;
+        enemyD.width = 64;
+        enemyD.height = 64;
+        enemysDown.add(enemyD);
         laatsteEnemy = TimeUtils.nanoTime();
     }
 
     private void spawnEnemyRight() {
-        Rectangle enemy = new Rectangle();
-        enemy.x = 1100;
-        enemy.y = 500;
-        enemy.width = 64;
-        enemy.height = 64;
-        enemysRight.add(enemy);
+        Rectangle enemyR = new Rectangle();
+        enemyR.x = 1100;
+        enemyR.y = 500;
+        enemyR.width = 64;
+        enemyR.height = 64;
+        enemysRight.add(enemyR);
         laatsteEnemy = TimeUtils.nanoTime();
     }
 
@@ -299,7 +299,22 @@ public class Kbsgame extends ApplicationAdapter {
         }
     }
 
+    public void walkDown(){
+        for (Iterator<Rectangle> iter = enemysUp.iterator(); iter.hasNext(); ) {
+            Rectangle raindropS = iter.next();
+            raindropS.y -= 200 * Gdx.graphics.getDeltaTime();
+            if (raindropS.y + 64 < 0) iter.remove();
+        }
+    }
+    public void walkUp(){
 
+    }
+    public void walkLeft(){
+
+    }
+    public void walRight(){
+
+    }
 
         public void dispose (){
             batch.dispose();
