@@ -26,7 +26,10 @@ public class Kbsgame extends ApplicationAdapter {
     private Texture bullet;
     private Rectangle heroBody;
     private float angle;
-    private Array<Rectangle> bullets;
+    private Array<Rectangle> bulletsS;
+    private Array<Rectangle> bulletsN;
+    private Array<Rectangle> bulletsW;
+    private Array<Rectangle> bulletsE;
     private boolean north = false;
     private boolean east = false;
     private boolean west = false;
@@ -45,7 +48,10 @@ public class Kbsgame extends ApplicationAdapter {
         heroBody.x = 550;
         heroBody.y = 500;
         heroImage = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
-        bullets = new Array<Rectangle>();
+        bulletsS = new Array<Rectangle>();
+        bulletsE = new Array<Rectangle>();
+        bulletsW = new Array<Rectangle>();
+        bulletsN = new Array<Rectangle>();
 
 
         //hero
@@ -55,14 +61,37 @@ public class Kbsgame extends ApplicationAdapter {
 
     }
 
-
-    private void spawnRaindrop() {
-        Rectangle raindrop = new Rectangle();
-        raindrop.x = 800;
-        raindrop.y = 480;
-        raindrop.width = 64;
-        raindrop.height = 64;
-        bullets.add(raindrop);
+    private void spawnNorthRaindrop() {
+        Rectangle raindropN = new Rectangle();
+        raindropN.x = 800;
+        raindropN.y = 480;
+        raindropN.width = 64;
+        raindropN.height = 64;
+        bulletsN.add(raindropN);
+    }
+    private void spawnWestRaindrop() {
+        Rectangle raindropW = new Rectangle();
+        raindropW.x = 800;
+        raindropW.y = 480;
+        raindropW.width = 64;
+        raindropW.height = 64;
+        bulletsW.add(raindropW);
+    }
+    private void spawnEastRaindrop() {
+        Rectangle raindropE = new Rectangle();
+        raindropE.x = 800;
+        raindropE.y = 480;
+        raindropE.width = 64;
+        raindropE.height = 64;
+        bulletsE.add(raindropE);
+    }
+    private void spawnSouthRaindrop() {
+        Rectangle raindropS = new Rectangle();
+        raindropS.x = 800;
+        raindropS.y = 480;
+        raindropS.width = 64;
+        raindropS.height = 64;
+        bulletsS.add(raindropS);
     }
 
 
@@ -73,19 +102,25 @@ public class Kbsgame extends ApplicationAdapter {
         //camera
         camera.update();
         batch.setProjectionMatrix(camera.combined);
-        while (west){
+        if(west){
             shootWest();
-            //draw();
-
+            draw();
         }
-
-        while (north){
+        if(north){
+            shootNorth();
+            draw();
+        }
+        if(south){
             shootDown();
+            draw();
+        }
+        if(east){
+            shootEast();
             draw();
         }
 
         draw();
-        shootDown();
+        //shootWest();
     }
 
     public void draw() {
@@ -94,28 +129,53 @@ public class Kbsgame extends ApplicationAdapter {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             angle = 360;
-            spawnRaindrop();
+            north = false;
+            west = true;
+            east = false;
+            south = false;
+            spawnWestRaindrop();
+
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
             angle = 180;
-
-            spawnRaindrop();
+            north = true;
+            west = false;
+            east = false;
+            south = false;
+            spawnNorthRaindrop();
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
             angle = 270;
-            spawnRaindrop();
+            north = false;
+            west = false;
+            east = false;
+            south = true;
+            spawnSouthRaindrop();
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
             angle = 90;
-            spawnRaindrop();
+            north = false;
+            west =false;
+            east = true;
+            south = false;
+            spawnEastRaindrop();
         }
 
         heroImage.setRotation(angle);
 
-        for (Rectangle raindrop : bullets) {
+        for (Rectangle raindrop : bulletsS) {
+            batch.draw(bullet, raindrop.x, raindrop.y);
+        }
+        for (Rectangle raindrop : bulletsN) {
+            batch.draw(bullet, raindrop.x, raindrop.y);
+        }
+        for (Rectangle raindrop : bulletsW) {
+            batch.draw(bullet, raindrop.x, raindrop.y);
+        }
+        for (Rectangle raindrop : bulletsE) {
             batch.draw(bullet, raindrop.x, raindrop.y);
         }
         heroImage.draw(batch);
@@ -123,18 +183,32 @@ public class Kbsgame extends ApplicationAdapter {
     }
 
     public void shootDown(){
-        for (Iterator<Rectangle> iter = bullets.iterator(); iter.hasNext(); ) {
-            Rectangle raindrop = iter.next();
-            raindrop.y -= 200 * Gdx.graphics.getDeltaTime();
-            if (raindrop.y + 64 < 0) iter.remove();
+        for (Iterator<Rectangle> iter = bulletsS.iterator(); iter.hasNext(); ) {
+            Rectangle raindropS = iter.next();
+            raindropS.y -= 200 * Gdx.graphics.getDeltaTime();
+            if (raindropS.y + 64 < 0) iter.remove();
         }
     }
 
     public void shootWest(){
-        for (Iterator<Rectangle> iter = bullets.iterator(); iter.hasNext(); ) {
-            Rectangle raindrop = iter.next();
-            raindrop.x -= 200 * Gdx.graphics.getDeltaTime();
-            if (raindrop.y + 64 < 0) iter.remove();
+        for (Iterator<Rectangle> iter = bulletsW.iterator(); iter.hasNext(); ) {
+            Rectangle raindropW = iter.next();
+            raindropW.x -= 200 * Gdx.graphics.getDeltaTime();
+            if (raindropW.y + 64 < 0) iter.remove();
+        }
+    }
+    public void shootEast(){
+        for (Iterator<Rectangle> iter = bulletsE.iterator(); iter.hasNext(); ) {
+            Rectangle raindropE = iter.next();
+            raindropE.x += 200 * Gdx.graphics.getDeltaTime();
+            if (raindropE.y + 64 < 0) iter.remove();
+        }
+    }
+    public void shootNorth(){
+        for (Iterator<Rectangle> iter = bulletsN.iterator(); iter.hasNext(); ) {
+            Rectangle raindropN = iter.next();
+            raindropN.y += 200 * Gdx.graphics.getDeltaTime();
+            if (raindropN.y + 64 < 0) iter.remove();
         }
     }
 
