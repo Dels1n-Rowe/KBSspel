@@ -116,23 +116,10 @@ public class Kbsgame extends ApplicationAdapter {
         //camera
         camera.update();
         batch.setProjectionMatrix(camera.combined);
-        if(west){
-            shootWest();
-            draw();
-        }
-        if(north){
-            shootNorth();
-            draw();
-        }
-        if(south){
-            shootDown();
-            draw();
-        }
-        if(east){
-            shootEast();
-            draw();
-        }
-
+        shootWest();
+        shootEast();
+        shootNorth();
+        shootDown();
         draw();
     }
 
