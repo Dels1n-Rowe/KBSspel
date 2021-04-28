@@ -38,10 +38,6 @@ public class Kbsgame extends ApplicationAdapter {
     private BitmapFont font;
     private int kogels;
 
-    private boolean north = false;
-    private boolean east = false;
-    private boolean west = false;
-    private boolean south = false;
     private long laatsteEnemy;
     private int test = 1;
 
@@ -221,10 +217,6 @@ public class Kbsgame extends ApplicationAdapter {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             angle = 360;
-            north = false;
-            west = true;
-            east = false;
-            south = false;
             if (kogels >= 1) {
                 spawnWestRaindrop();
                 kogels--;
@@ -233,10 +225,6 @@ public class Kbsgame extends ApplicationAdapter {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
             angle = 180;
-            north = true;
-            west = false;
-            east = false;
-            south = false;
             if (kogels >= 1) {
                 spawnNorthRaindrop();
                 kogels--;
@@ -245,10 +233,6 @@ public class Kbsgame extends ApplicationAdapter {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
             angle = 270;
-            north = false;
-            west = false;
-            east = false;
-            south = true;
             if (kogels >= 1) {
                 spawnSouthRaindrop();
                 kogels--;
@@ -257,10 +241,6 @@ public class Kbsgame extends ApplicationAdapter {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
             angle = 90;
-            north = false;
-            west =false;
-            east = true;
-            south = false;
             if (kogels >= 1) {
                 spawnEastRaindrop();
                 kogels--;

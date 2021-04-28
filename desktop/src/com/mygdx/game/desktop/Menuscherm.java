@@ -34,8 +34,6 @@ public class Menuscherm extends ApplicationAdapter  {
 
 
 
-
-
     @Override
     public void create(){
         stage = new Stage(new ScreenViewport());
