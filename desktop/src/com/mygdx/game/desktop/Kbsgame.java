@@ -54,7 +54,7 @@ public class Kbsgame extends ApplicationAdapter {
         heroBody = new Rectangle();
         heroBody.x = 550;
         heroBody.y = 500;
-        heroImage = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
+        heroImage = new Sprite(new Texture(Gdx.files.internal("bucket.png")));
         bulletsS = new Array<Rectangle>();
         bulletsE = new Array<Rectangle>();
         bulletsW = new Array<Rectangle>();
@@ -168,23 +168,10 @@ public class Kbsgame extends ApplicationAdapter {
         //camera
         camera.update();
         batch.setProjectionMatrix(camera.combined);
-        if(west){
-            shootWest();
-            draw();
-        }
-        if(north){
-            shootNorth();
-            draw();
-        }
-        if(south){
-            shootDown();
-            draw();
-        }
-        if(east){
-            shootEast();
-            draw();
-        }
-
+        shootWest();
+        shootEast();
+        shootNorth();
+        shootDown();
         draw();
     }
 
@@ -221,7 +208,6 @@ public class Kbsgame extends ApplicationAdapter {
         for (Rectangle enemy: enemysRight){
             batch.draw(enemyImage, enemy.x,  enemy.y);
         }
-
 
         heroImage .setPosition(heroBody.x, heroBody.y);
 
@@ -279,7 +265,6 @@ public class Kbsgame extends ApplicationAdapter {
         heroImage.draw(batch);
         batch.end();
     }
-
 
     public void shootDown(){
         for (Iterator<Rectangle> iter = bulletsS.iterator(); iter.hasNext(); ) {
