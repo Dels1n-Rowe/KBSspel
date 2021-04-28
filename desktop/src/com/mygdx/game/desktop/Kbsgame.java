@@ -50,13 +50,13 @@ public class Kbsgame extends ApplicationAdapter {
         heroBody = new Rectangle();
         heroBody.x = 550;
         heroBody.y = 500;
-        heroImage = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
+        heroImage = new Sprite(new Texture(Gdx.files.internal("bucket.png")));
         bulletsS = new Array<Rectangle>();
         bulletsE = new Array<Rectangle>();
         bulletsW = new Array<Rectangle>();
         bulletsN = new Array<Rectangle>();
         enemys = new Array<Rectangle>();
-        enemyImage = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
+        enemyImage = new Sprite(new Texture(Gdx.files.internal("bucket.png")));
 
 
         //hero
