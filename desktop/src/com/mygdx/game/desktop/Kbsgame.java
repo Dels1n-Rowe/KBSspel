@@ -36,6 +36,7 @@ public class Kbsgame extends ApplicationAdapter {
     private boolean west = false;
     private boolean south = false;
     private long laatsteEnemy;
+    private int test = 1;
 
     @Override
 
@@ -67,8 +68,23 @@ public class Kbsgame extends ApplicationAdapter {
 
     private void spawnenemy() {
         Rectangle enemy = new Rectangle();
-        enemy.x = 50;
-        enemy.y = 50;
+        int randomGetal = MathUtils.random(1,4);
+        if(randomGetal == 1) {
+            enemy.x = 50;
+            enemy.y = 50;
+        }
+        if(randomGetal == 2) {
+            enemy.x = 1100;
+            enemy.y = 800;
+        }
+        if(randomGetal == 3) {
+            enemy.x = 50;
+            enemy.y = 800;
+        }
+        if(randomGetal == 4) {
+            enemy.x = 1100;
+            enemy.y = 50;
+        }
         enemy.width = 64;
         enemy.height = 64;
         enemys.add(enemy);
@@ -138,7 +154,10 @@ public class Kbsgame extends ApplicationAdapter {
 
     public void draw() {
         batch.begin();
-        spawnenemy();
+        if (test ==1) {
+            spawnenemy();
+            test =2;
+        }
         for (Rectangle enemy: enemys){
             batch.draw(enemyImage, enemy.x,  enemy.y);
         }
