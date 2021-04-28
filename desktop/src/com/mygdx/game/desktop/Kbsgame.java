@@ -30,7 +30,11 @@ public class Kbsgame extends ApplicationAdapter {
     private Array<Rectangle> bulletsN;
     private Array<Rectangle> bulletsW;
     private Array<Rectangle> bulletsE;
-    private Array<Rectangle> enemys;
+    private Array<Rectangle> enemysLeft;
+    private Array<Rectangle> enemysDown;
+    private Array<Rectangle> enemysUp;
+    private Array<Rectangle> enemysRight;
+
     private boolean north = false;
     private boolean east = false;
     private boolean west = false;
@@ -55,7 +59,10 @@ public class Kbsgame extends ApplicationAdapter {
         bulletsE = new Array<Rectangle>();
         bulletsW = new Array<Rectangle>();
         bulletsN = new Array<Rectangle>();
-        enemys = new Array<Rectangle>();
+        enemysLeft = new Array<Rectangle>();
+        enemysUp = new Array<Rectangle>();
+        enemysRight = new Array<Rectangle>();
+        enemysDown = new Array<Rectangle>();
         enemyImage = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
 
 
@@ -66,28 +73,57 @@ public class Kbsgame extends ApplicationAdapter {
 
     }
 
-    private void spawnenemy() {
-        Rectangle enemy = new Rectangle();
+    public void spawnenemy(){
         int randomGetal = MathUtils.random(1,4);
-        if(randomGetal == 1) {
-            enemy.x = 50;
-            enemy.y = 50;
+        if (randomGetal ==1) {
+            spawnEnemyLeft();
         }
-        if(randomGetal == 2) {
-            enemy.x = 1100;
-            enemy.y = 800;
+        if (randomGetal == 2){
+            spawnEnemyDown();
         }
-        if(randomGetal == 3) {
-            enemy.x = 50;
-            enemy.y = 800;
+        if (randomGetal == 3){
+            spawnEnemyUp();
         }
-        if(randomGetal == 4) {
-            enemy.x = 1100;
-            enemy.y = 50;
+        if (randomGetal == 4){
+            spawnEnemyRight();
         }
+    }
+
+    private void spawnEnemyLeft() {
+        Rectangle enemy = new Rectangle();
+        enemy.x = 50;
+        enemy.y = 500;
         enemy.width = 64;
         enemy.height = 64;
-        enemys.add(enemy);
+        enemysLeft.add(enemy);
+        laatsteEnemy = TimeUtils.nanoTime();
+    }
+    private void spawnEnemyUp() {
+        Rectangle enemy = new Rectangle();
+        enemy.x = 550;
+        enemy.y = 800;
+        enemy.width = 64;
+        enemy.height = 64;
+        enemysUp.add(enemy);
+        laatsteEnemy = TimeUtils.nanoTime();
+    }
+    private void spawnEnemyDown() {
+        Rectangle enemy = new Rectangle();
+        enemy.x = 550;
+        enemy.y = 50;
+        enemy.width = 64;
+        enemy.height = 64;
+        enemysDown.add(enemy);
+        laatsteEnemy = TimeUtils.nanoTime();
+    }
+
+    private void spawnEnemyRight() {
+        Rectangle enemy = new Rectangle();
+        enemy.x = 1100;
+        enemy.y = 500;
+        enemy.width = 64;
+        enemy.height = 64;
+        enemysRight.add(enemy);
         laatsteEnemy = TimeUtils.nanoTime();
     }
 
@@ -154,16 +190,38 @@ public class Kbsgame extends ApplicationAdapter {
 
     public void draw() {
         batch.begin();
-        if (test ==1) {
-            spawnenemy();
+        if(test == 1){
+        int randomGetal = MathUtils.random(1,4);
+        if (randomGetal ==1) {
+            spawnEnemyLeft();
+        }
+        if (randomGetal == 2){
+            spawnEnemyDown();
+        }
+        if (randomGetal == 3){
+            spawnEnemyUp();
+        }
+        if (randomGetal == 4){
+            spawnEnemyRight();
+        }
             test =2;
         }
 
         if(TimeUtils.nanoTime() - laatsteEnemy > 1000000000) spawnenemy();
 
-        for (Rectangle enemy: enemys){
+        for (Rectangle enemy: enemysLeft){
             batch.draw(enemyImage, enemy.x,  enemy.y);
         }
+        for (Rectangle enemy: enemysUp){
+            batch.draw(enemyImage, enemy.x,  enemy.y);
+        }
+        for (Rectangle enemy: enemysDown){
+            batch.draw(enemyImage, enemy.x,  enemy.y);
+        }
+        for (Rectangle enemy: enemysRight){
+            batch.draw(enemyImage, enemy.x,  enemy.y);
+        }
+
 
         heroImage .setPosition(heroBody.x, heroBody.y);
 
@@ -221,6 +279,7 @@ public class Kbsgame extends ApplicationAdapter {
         heroImage.draw(batch);
         batch.end();
     }
+
 
     public void shootDown(){
         for (Iterator<Rectangle> iter = bulletsS.iterator(); iter.hasNext(); ) {
