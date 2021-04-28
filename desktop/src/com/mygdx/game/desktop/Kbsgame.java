@@ -173,6 +173,10 @@ public class Kbsgame extends ApplicationAdapter {
         shootEast();
         shootNorth();
         shootDown();
+        walkDown();
+        walkLeft();
+        walRight();
+        walkUp();
         draw();
     }
 
@@ -301,19 +305,31 @@ public class Kbsgame extends ApplicationAdapter {
 
     public void walkDown(){
         for (Iterator<Rectangle> iter = enemysUp.iterator(); iter.hasNext(); ) {
-            Rectangle raindropS = iter.next();
-            raindropS.y -= 200 * Gdx.graphics.getDeltaTime();
-            if (raindropS.y + 64 < 0) iter.remove();
+            Rectangle enemyU = iter.next();
+            enemyU.y -= 200 * Gdx.graphics.getDeltaTime();
+            if (enemyU.y + 64 < 0) iter.remove();
         }
     }
     public void walkUp(){
-
+        for (Iterator<Rectangle> iter = enemysDown.iterator(); iter.hasNext(); ) {
+            Rectangle enemyD = iter.next();
+            enemyD.y += 200 * Gdx.graphics.getDeltaTime();
+            if (enemyD.y + 64 < 0) iter.remove();
+        }
     }
     public void walkLeft(){
-
+        for (Iterator<Rectangle> iter = enemysRight.iterator(); iter.hasNext(); ) {
+            Rectangle enemyR = iter.next();
+            enemyR.x -= 200 * Gdx.graphics.getDeltaTime();
+            if (enemyR.y + 64 < 0) iter.remove();
+        }
     }
     public void walRight(){
-
+        for (Iterator<Rectangle> iter = enemysLeft.iterator(); iter.hasNext(); ) {
+            Rectangle enemyL = iter.next();
+            enemyL.x += 200 * Gdx.graphics.getDeltaTime();
+            if (enemyL.y + 64 < 0) iter.remove();
+        }
     }
 
         public void dispose (){
