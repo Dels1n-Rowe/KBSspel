@@ -158,6 +158,9 @@ public class Kbsgame extends ApplicationAdapter {
             spawnenemy();
             test =2;
         }
+
+        if(TimeUtils.nanoTime() - laatsteEnemy > 1000000000) spawnenemy();
+
         for (Rectangle enemy: enemys){
             batch.draw(enemyImage, enemy.x,  enemy.y);
         }
