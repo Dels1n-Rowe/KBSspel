@@ -19,7 +19,7 @@ import java.awt.*;
 import java.util.Iterator;
 
 public class Kbsgame extends ApplicationAdapter {
-    private Texture enemyImage;
+    private Sprite enemyImage;
     private Sprite heroImage;
     private SpriteBatch batch;
     private OrthographicCamera camera;
@@ -30,10 +30,12 @@ public class Kbsgame extends ApplicationAdapter {
     private Array<Rectangle> bulletsN;
     private Array<Rectangle> bulletsW;
     private Array<Rectangle> bulletsE;
+    private Array<Rectangle> enemys;
     private boolean north = false;
     private boolean east = false;
     private boolean west = false;
     private boolean south = false;
+    private long laatsteEnemy;
 
     @Override
 
@@ -52,6 +54,8 @@ public class Kbsgame extends ApplicationAdapter {
         bulletsE = new Array<Rectangle>();
         bulletsW = new Array<Rectangle>();
         bulletsN = new Array<Rectangle>();
+        enemys = new Array<Rectangle>();
+        enemyImage = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
 
 
         //hero
@@ -59,6 +63,16 @@ public class Kbsgame extends ApplicationAdapter {
         //enemy
 
 
+    }
+
+    private void spawnenemy() {
+        Rectangle enemy = new Rectangle();
+        enemy.x = 50;
+        enemy.y = 50;
+        enemy.width = 64;
+        enemy.height = 64;
+        enemys.add(enemy);
+        laatsteEnemy = TimeUtils.nanoTime();
     }
 
     private void spawnNorthRaindrop() {
@@ -124,6 +138,11 @@ public class Kbsgame extends ApplicationAdapter {
 
     public void draw() {
         batch.begin();
+        spawnenemy();
+        for (Rectangle enemy: enemys){
+            batch.draw(enemyImage, enemy.x,  enemy.y);
+        }
+
         heroImage .setPosition(heroBody.x, heroBody.y);
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
