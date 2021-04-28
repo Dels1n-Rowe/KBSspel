@@ -308,6 +308,9 @@ public class Kbsgame extends ApplicationAdapter {
             Rectangle enemyU = iter.next();
             enemyU.y -= 200 * Gdx.graphics.getDeltaTime();
             if (enemyU.y + 64 < 0) iter.remove();
+            if (enemyU.y <= 500){
+                iter.remove();
+            }
         }
     }
     public void walkUp(){
@@ -315,6 +318,9 @@ public class Kbsgame extends ApplicationAdapter {
             Rectangle enemyD = iter.next();
             enemyD.y += 200 * Gdx.graphics.getDeltaTime();
             if (enemyD.y + 64 < 0) iter.remove();
+            if (enemyD.y >= 500){
+                iter.remove();
+            }
         }
     }
     public void walkLeft(){
@@ -322,6 +328,9 @@ public class Kbsgame extends ApplicationAdapter {
             Rectangle enemyR = iter.next();
             enemyR.x -= 200 * Gdx.graphics.getDeltaTime();
             if (enemyR.y + 64 < 0) iter.remove();
+            if (enemyR.x <= 550){
+                iter.remove();
+            }
         }
     }
     public void walRight(){
@@ -329,6 +338,9 @@ public class Kbsgame extends ApplicationAdapter {
             Rectangle enemyL = iter.next();
             enemyL.x += 200 * Gdx.graphics.getDeltaTime();
             if (enemyL.y + 64 < 0) iter.remove();
+            if (enemyL.x >= 550){
+                iter.remove();
+            }
         }
     }
 
