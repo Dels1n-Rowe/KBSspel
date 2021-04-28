@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -34,6 +35,8 @@ public class Kbsgame extends ApplicationAdapter {
     private Array<Rectangle> enemysDown;
     private Array<Rectangle> enemysUp;
     private Array<Rectangle> enemysRight;
+    private BitmapFont font;
+    private int kogels;
 
     private boolean north = false;
     private boolean east = false;
@@ -64,6 +67,8 @@ public class Kbsgame extends ApplicationAdapter {
         enemysRight = new Array<Rectangle>();
         enemysDown = new Array<Rectangle>();
         enemyImage = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
+        font = new BitmapFont();
+        kogels = 6;
 
 
         //hero
@@ -177,6 +182,9 @@ public class Kbsgame extends ApplicationAdapter {
 
     public void draw() {
         batch.begin();
+
+        font.draw(batch,"0" + String.valueOf(kogels), 1100, 50);
+
         if(test == 1){
         int randomGetal = MathUtils.random(1,4);
         if (randomGetal ==1) {
@@ -217,8 +225,10 @@ public class Kbsgame extends ApplicationAdapter {
             west = true;
             east = false;
             south = false;
-            spawnWestRaindrop();
-
+            if (kogels >= 1) {
+                spawnWestRaindrop();
+                kogels--;
+            }
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
@@ -227,7 +237,10 @@ public class Kbsgame extends ApplicationAdapter {
             west = false;
             east = false;
             south = false;
-            spawnNorthRaindrop();
+            if (kogels >= 1) {
+                spawnNorthRaindrop();
+                kogels--;
+            }
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
@@ -236,7 +249,10 @@ public class Kbsgame extends ApplicationAdapter {
             west = false;
             east = false;
             south = true;
-            spawnSouthRaindrop();
+            if (kogels >= 1) {
+                spawnSouthRaindrop();
+                kogels--;
+            }
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
@@ -245,7 +261,10 @@ public class Kbsgame extends ApplicationAdapter {
             west =false;
             east = true;
             south = false;
-            spawnEastRaindrop();
+            if (kogels >= 1) {
+                spawnEastRaindrop();
+                kogels--;
+            }
         }
 
         heroImage.setRotation(angle);
