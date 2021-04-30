@@ -1,5 +1,5 @@
 package com.mygdx.game.desktop;
-
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -35,6 +35,7 @@ public class Kbsgame extends ApplicationAdapter {
     private Array<Rectangle> enemysDown;
     private Array<Rectangle> enemysUp;
     private Array<Rectangle> enemysRight;
+    private Rectangle enemyR;
     private BitmapFont font;
     private int kogels;
     private int levens;
@@ -121,7 +122,7 @@ public class Kbsgame extends ApplicationAdapter {
     }
 
     private void spawnEnemyRight() {
-        Rectangle enemyR = new Rectangle();
+        enemyR = new Rectangle();
         enemyR.x = 1100;
         enemyR.y = 500;
         enemyR.width = 64;
@@ -290,6 +291,7 @@ public class Kbsgame extends ApplicationAdapter {
             Rectangle raindropW = iter.next();
             raindropW.x -= 200 * Gdx.graphics.getDeltaTime();
             if (raindropW.y + 64 < 0) iter.remove();
+
         }
     }
     public void shootEast(){
@@ -297,6 +299,14 @@ public class Kbsgame extends ApplicationAdapter {
             Rectangle raindropE = iter.next();
             raindropE.x += 200 * Gdx.graphics.getDeltaTime();
             if (raindropE.y + 64 < 0) iter.remove();
+            for (Iterator<Rectangle> k = enemysRight.iterator(); k.hasNext(); ) {
+                Rectangle enemyR = k.next();
+                if(raindropE.overlaps(enemyR)) {
+                    iter.remove();
+                    k.remove();
+                }
+
+            }
         }
     }
     public void shootNorth(){
