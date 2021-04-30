@@ -77,18 +77,18 @@ public class Kbsgame extends ApplicationAdapter {
 
     }
 
-    public void spawnenemy(){
-        int randomGetal = MathUtils.random(1,4);
-        if (randomGetal ==1) {
+    public void spawnenemy() {
+        int randomGetal = MathUtils.random(1, 4);
+        if (randomGetal == 1) {
             spawnEnemyLeft();
         }
-        if (randomGetal == 2){
+        if (randomGetal == 2) {
             spawnEnemyDown();
         }
-        if (randomGetal == 3){
+        if (randomGetal == 3) {
             spawnEnemyUp();
         }
-        if (randomGetal == 4){
+        if (randomGetal == 4) {
             spawnEnemyRight();
         }
     }
@@ -102,6 +102,7 @@ public class Kbsgame extends ApplicationAdapter {
         enemysLeft.add(enemyL);
         laatsteEnemy = TimeUtils.nanoTime();
     }
+
     private void spawnEnemyUp() {
         Rectangle enemyU = new Rectangle();
         enemyU.x = 550;
@@ -111,6 +112,7 @@ public class Kbsgame extends ApplicationAdapter {
         enemysUp.add(enemyU);
         laatsteEnemy = TimeUtils.nanoTime();
     }
+
     private void spawnEnemyDown() {
         Rectangle enemyD = new Rectangle();
         enemyD.x = 550;
@@ -139,6 +141,7 @@ public class Kbsgame extends ApplicationAdapter {
         raindropN.height = 64;
         bulletsN.add(raindropN);
     }
+
     private void spawnWestRaindrop() {
         Rectangle raindropW = new Rectangle();
         raindropW.x = 550;
@@ -147,6 +150,7 @@ public class Kbsgame extends ApplicationAdapter {
         raindropW.height = 64;
         bulletsW.add(raindropW);
     }
+
     private void spawnEastRaindrop() {
         Rectangle raindropE = new Rectangle();
         raindropE.x = 550;
@@ -155,6 +159,7 @@ public class Kbsgame extends ApplicationAdapter {
         raindropE.height = 64;
         bulletsE.add(raindropE);
     }
+
     private void spawnSouthRaindrop() {
         Rectangle raindropS = new Rectangle();
         raindropS.x = 550;
@@ -186,43 +191,43 @@ public class Kbsgame extends ApplicationAdapter {
     public void draw() {
         batch.begin();
 
-        font.draw(batch,"0" + String.valueOf(kogels), 1100, 50);
+        font.draw(batch, "0" + String.valueOf(kogels), 1100, 50);
 
-        font.draw(batch, "levens 0" + String.valueOf(levens),50,50);
+        font.draw(batch, "levens 0" + String.valueOf(levens), 50, 50);
 
-        if(test == 1){
-        int randomGetal = MathUtils.random(1,4);
-        if (randomGetal ==1) {
-            spawnEnemyLeft();
-        }
-        if (randomGetal == 2){
-            spawnEnemyDown();
-        }
-        if (randomGetal == 3){
-            spawnEnemyUp();
-        }
-        if (randomGetal == 4){
-            spawnEnemyRight();
-        }
-            test =2;
-        }
-
-        if(TimeUtils.nanoTime() - laatsteEnemy > 1000000000) spawnenemy();
-
-        for (Rectangle enemy: enemysLeft){
-            batch.draw(enemyImage, enemy.x,  enemy.y);
-        }
-        for (Rectangle enemy: enemysUp){
-            batch.draw(enemyImage, enemy.x,  enemy.y);
-        }
-        for (Rectangle enemy: enemysDown){
-            batch.draw(enemyImage, enemy.x,  enemy.y);
-        }
-        for (Rectangle enemy: enemysRight){
-            batch.draw(enemyImage, enemy.x,  enemy.y);
+        if (test == 1) {
+            int randomGetal = MathUtils.random(1, 4);
+            if (randomGetal == 1) {
+                spawnEnemyLeft();
+            }
+            if (randomGetal == 2) {
+                spawnEnemyDown();
+            }
+            if (randomGetal == 3) {
+                spawnEnemyUp();
+            }
+            if (randomGetal == 4) {
+                spawnEnemyRight();
+            }
+            test = 2;
         }
 
-        heroImage .setPosition(heroBody.x, heroBody.y);
+        if (TimeUtils.nanoTime() - laatsteEnemy > 1000000000) spawnenemy();
+
+        for (Rectangle enemy : enemysLeft) {
+            batch.draw(enemyImage, enemy.x, enemy.y);
+        }
+        for (Rectangle enemy : enemysUp) {
+            batch.draw(enemyImage, enemy.x, enemy.y);
+        }
+        for (Rectangle enemy : enemysDown) {
+            batch.draw(enemyImage, enemy.x, enemy.y);
+        }
+        for (Rectangle enemy : enemysRight) {
+            batch.draw(enemyImage, enemy.x, enemy.y);
+        }
+
+        heroImage.setPosition(heroBody.x, heroBody.y);
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             angle = 360;
@@ -256,7 +261,7 @@ public class Kbsgame extends ApplicationAdapter {
             }
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_5)){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_5)) {
             kogels = 6;
         }
 
@@ -278,22 +283,40 @@ public class Kbsgame extends ApplicationAdapter {
         batch.end();
     }
 
-    public void shootDown(){
-        for (Iterator<Rectangle> iter = bulletsS.iterator(); iter.hasNext(); ) {
-            Rectangle raindropS = iter.next();
+    public void shootDown() {
+        for (Iterator<Rectangle> M = bulletsS.iterator(); M.hasNext(); ) {
+            Rectangle raindropS = M.next();
             raindropS.y -= 200 * Gdx.graphics.getDeltaTime();
-            if (raindropS.y + 64 < 0) iter.remove();
+            if (raindropS.y + 64 < 0) M.remove();
+            for (Iterator<Rectangle> N = enemysDown.iterator(); N.hasNext(); ) {
+                Rectangle enemyS = N.next();
+                if (raindropS.overlaps(enemyS)){
+                    M.remove();
+                    N.remove();
+                }
+
+            }
         }
     }
 
-    public void shootWest(){
-        for (Iterator<Rectangle> iter = bulletsW.iterator(); iter.hasNext(); ) {
-            Rectangle raindropW = iter.next();
+    public void shootWest() {
+        for (Iterator<Rectangle> N = bulletsW.iterator(); N.hasNext(); ) {
+            Rectangle raindropW = N.next();
             raindropW.x -= 200 * Gdx.graphics.getDeltaTime();
-            if (raindropW.y + 64 < 0) iter.remove();
+            if (raindropW.y + 64 < 0)  N.remove();
+            for (Iterator<Rectangle> L = enemysLeft.iterator(); L.hasNext(); ) {
+                Rectangle enemyL = L.next();
+                if (raindropW.overlaps(enemyL)) {
+                    L.remove();
+                    N.remove();
+                }
 
+            }
         }
     }
+
+
+
     public void shootEast(){
         for (Iterator<Rectangle> iter = bulletsE.iterator(); iter.hasNext(); ) {
             Rectangle raindropE = iter.next();
@@ -309,69 +332,80 @@ public class Kbsgame extends ApplicationAdapter {
             }
         }
     }
-    public void shootNorth(){
-        for (Iterator<Rectangle> iter = bulletsN.iterator(); iter.hasNext(); ) {
-            Rectangle raindropN = iter.next();
-            raindropN.y += 200 * Gdx.graphics.getDeltaTime();
-            if (raindropN.y + 64 < 0) iter.remove();
-        }
-    }
 
-    public void walkDown(){
-        for (Iterator<Rectangle> iter = enemysUp.iterator(); iter.hasNext(); ) {
-            Rectangle enemyU = iter.next();
-            enemyU.y -= 100 * Gdx.graphics.getDeltaTime();
-            if (enemyU.y + 64 < 0) iter.remove();
-            if (enemyU.y <= 500){
-                iter.remove();
-                if (levens >= 1) {
-                    levens--;
-                }
-            }
-        }
-    }
-    public void walkUp(){
-        for (Iterator<Rectangle> iter = enemysDown.iterator(); iter.hasNext(); ) {
-            Rectangle enemyD = iter.next();
-            enemyD.y += 150 * Gdx.graphics.getDeltaTime();
-            if (enemyD.y + 64 < 0) iter.remove();
-            if (enemyD.y >= 500){
-                iter.remove();
-                if (levens >= 1) {
-                    levens--;
-                }
-            }
-        }
-    }
-    public void walkLeft(){
-        for (Iterator<Rectangle> iter = enemysRight.iterator(); iter.hasNext(); ) {
-            Rectangle enemyR = iter.next();
-            enemyR.x -= 100 * Gdx.graphics.getDeltaTime();
-            if (enemyR.y + 64 < 0) iter.remove();
-            if (enemyR.x <= 550){
-                iter.remove();
-                if (levens >= 1) {
-                    levens--;
-                }
-            }
-        }
-    }
-    public void walRight(){
-        for (Iterator<Rectangle> iter = enemysLeft.iterator(); iter.hasNext(); ) {
-            Rectangle enemyL = iter.next();
-            enemyL.x += 150 * Gdx.graphics.getDeltaTime();
-            if (enemyL.y + 64 < 0) iter.remove();
-            if (enemyL.x >= 550){
-                iter.remove();
-                if (levens >= 1) {
-                    levens--;
-                }
-            }
-        }
-    }
 
-        public void dispose (){
+        public void shootNorth () {
+            for (Iterator<Rectangle> O = bulletsN.iterator(); O.hasNext(); ) {
+                Rectangle raindropN = O.next();
+                raindropN.y += 200 * Gdx.graphics.getDeltaTime();
+                if (raindropN.y + 64 < 0) O.remove();
+                for (Iterator<Rectangle> A = enemysUp.iterator(); A.hasNext(); ) {
+                    Rectangle enemyI = A.next();
+                    if (raindropN.overlaps(enemyI)) {
+                        A.remove();
+                        O.remove();
+                    }
+
+                }
+            }
+        }
+
+        public void walkDown () {
+            for (Iterator<Rectangle> iter = enemysUp.iterator(); iter.hasNext(); ) {
+                Rectangle enemyU = iter.next();
+                enemyU.y -= 100 * Gdx.graphics.getDeltaTime();
+                if (enemyU.y + 64 < 0) iter.remove();
+                if (enemyU.y <= 500) {
+                    iter.remove();
+                    if (levens >= 1) {
+                        levens--;
+                    }
+                }
+            }
+        }
+        public void walkUp () {
+            for (Iterator<Rectangle> iter = enemysDown.iterator(); iter.hasNext(); ) {
+                Rectangle enemyD = iter.next();
+                enemyD.y += 150 * Gdx.graphics.getDeltaTime();
+                if (enemyD.y + 64 < 0) iter.remove();
+                if (enemyD.y >= 500) {
+                    iter.remove();
+                    if (levens >= 1) {
+                        levens--;
+                    }
+                }
+            }
+        }
+        public void walkLeft () {
+            for (Iterator<Rectangle> iter = enemysRight.iterator(); iter.hasNext(); ) {
+                Rectangle enemyR = iter.next();
+                enemyR.x -= 100 * Gdx.graphics.getDeltaTime();
+                if (enemyR.y + 64 < 0) iter.remove();
+                if (enemyR.x <= 550) {
+                    iter.remove();
+                    if (levens >= 1) {
+                        levens--;
+                    }
+                }
+            }
+        }
+        public void walRight () {
+            for (Iterator<Rectangle> iter = enemysLeft.iterator(); iter.hasNext(); ) {
+                Rectangle enemyL = iter.next();
+                enemyL.x += 150 * Gdx.graphics.getDeltaTime();
+                if (enemyL.y + 64 < 0) iter.remove();
+                if (enemyL.x >= 550) {
+                    iter.remove();
+                    if (levens >= 1) {
+                        levens--;
+                    }
+                }
+            }
+        }
+
+        public void dispose () {
             batch.dispose();
         }
     }
+
 
