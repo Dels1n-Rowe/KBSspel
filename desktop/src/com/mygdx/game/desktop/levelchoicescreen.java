@@ -1,6 +1,7 @@
 package com.mygdx.game.desktop;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
@@ -19,7 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class levelchoicescreen extends ApplicationAdapter implements Screen {
+public class levelchoicescreen implements Screen {
     private SpriteBatch sprite;
     private CharSequence ingameTitel = "KBS laser game";
     private OrthographicCamera cam;
@@ -29,8 +30,10 @@ public class levelchoicescreen extends ApplicationAdapter implements Screen {
     private TextButton buttonInstellingen;
     private Stage stage;
     private Table tabel;
+    private Game game;
 
-    public void create(){
+    public levelchoicescreen(final Game game){
+        this.game = game;
         stage = new Stage(new ScreenViewport());
 
         cam = new OrthographicCamera();
@@ -57,11 +60,7 @@ public class levelchoicescreen extends ApplicationAdapter implements Screen {
         buttonSpelen.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                LwjglApplicationConfiguration m = new LwjglApplicationConfiguration();
-                m.title = "KBSgame";
-                m.width = 1200;
-                m.height = 900;
-                //new LwjglApplication(new Kbsgame(), m);
+                game.setScreen(new Kbsgame(game));
 
             }
         });
@@ -85,7 +84,7 @@ public class levelchoicescreen extends ApplicationAdapter implements Screen {
 
     }
 
-    public void render(){
+    public void render(float delta){
         Gdx.gl.glClearColor(0, 0, 255,0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         sprite.begin();
@@ -101,7 +100,17 @@ public class levelchoicescreen extends ApplicationAdapter implements Screen {
     }
 
     @Override
-    public void render(float delta) {
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
 
     }
 

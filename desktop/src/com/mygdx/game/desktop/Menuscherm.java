@@ -60,7 +60,7 @@ public class Menuscherm implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //Gdx.app.log("Clicked", "spelen");
-                game.setScreen(new Kbsgame(game));
+                game.setScreen(new levelchoicescreen(game));
             }
         });
         buttonInstellingen.addListener(new ClickListener(){
@@ -83,58 +83,6 @@ public class Menuscherm implements Screen {
     }
 
 
-  /*  public void create(Game game){
-        stage = new Stage(new ScreenViewport());
-
-        cam = new OrthographicCamera();
-        cam.setToOrtho(false, 1200, 900);
-        sprite = new SpriteBatch();
-
-        font = new BitmapFont();
-        font.setColor(Color.BLUE);
-
-        tabel = new Table();
-        tabel.setWidth(stage.getWidth());
-        tabel.align(Align.center| Align.top);
-        tabel.setPosition(0, Gdx.graphics.getHeight());
-
-        skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
-
-        buttonInstellingen = new TextButton("instellingen", skin);
-        buttonInstellingen.setHeight(100);
-        buttonInstellingen.setWidth(500);
-
-        buttonSpelen = new TextButton("spelen", skin);
-        buttonSpelen.setWidth(500);
-        buttonSpelen.setHeight(100);
-        buttonSpelen.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.log("Clicked", "spelen");
-            }
-        });
-        buttonInstellingen.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.log("Clicked", "instellingen");
-            }
-        });
-        tabel.padTop(30);
-        tabel.add(buttonSpelen).padBottom(30);
-        tabel.row();
-        tabel.add(buttonInstellingen);
-
-        stage.addActor(tabel);
-
-
-        Gdx.input.setInputProcessor(stage);
-
-
-
-    }
-
-
-   */
     @Override
     public void show() {
 
