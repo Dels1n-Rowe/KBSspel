@@ -1,6 +1,9 @@
 package com.mygdx.game.desktop;
 
-import com.badlogic.gdx.*;
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -15,10 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import javax.management.StandardMBean;
-import java.awt.*;
-
-public class Menuscherm extends Game {
+public class levelchoicescreen extends ApplicationAdapter {
     private SpriteBatch sprite;
     private CharSequence ingameTitel = "KBS laser game";
     private OrthographicCamera cam;
@@ -29,9 +29,6 @@ public class Menuscherm extends Game {
     private Stage stage;
     private Table tabel;
 
-
-
-    @Override
     public void create(){
         stage = new Stage(new ScreenViewport());
 
@@ -53,13 +50,18 @@ public class Menuscherm extends Game {
         buttonInstellingen.setHeight(100);
         buttonInstellingen.setWidth(500);
 
-        buttonSpelen = new TextButton("spelen", skin);
+        buttonSpelen = new TextButton("level 1", skin);
         buttonSpelen.setWidth(500);
         buttonSpelen.setHeight(100);
         buttonSpelen.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.log("Clicked", "spelen");
+                LwjglApplicationConfiguration m = new LwjglApplicationConfiguration();
+                m.title = "KBSgame";
+                m.width = 1200;
+                m.height = 900;
+                new LwjglApplication(new Kbsgame(), m);
+
             }
         });
         buttonInstellingen.addListener(new ClickListener(){
@@ -78,18 +80,12 @@ public class Menuscherm extends Game {
 
         Gdx.input.setInputProcessor(stage);
 
+
+
     }
 
-    @Override
-    public void dispose(){
-        sprite.dispose();
-        font.dispose();
-    }
-
-
-    @Override
     public void render(){
-        Gdx.gl.glClearColor(1,1,0,1);
+        Gdx.gl.glClearColor(0, 0, 255,0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         sprite.begin();
         font.draw(sprite, ingameTitel, 450, 600);
@@ -98,6 +94,11 @@ public class Menuscherm extends Game {
 
     }
 
+    @Override
+    public void dispose(){
+        sprite.dispose();
+        font.dispose();
+    }
 
 
 

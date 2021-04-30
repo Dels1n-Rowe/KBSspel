@@ -1,5 +1,6 @@
 package com.mygdx.game.desktop;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.mygdx.game.MyGdxGame;
@@ -10,6 +11,6 @@ public class DesktopLauncher {
 		config.title = "KBSgame";
 		config.width = 1200;
 		config.height = 900;
-		new LwjglApplication(new Kbsgame(), config);
+		new LwjglApplication(new levelchoicescreen(), config);
 	}
 }
