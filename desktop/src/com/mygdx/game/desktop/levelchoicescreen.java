@@ -22,12 +22,12 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class levelchoicescreen implements Screen {
     private SpriteBatch sprite;
-    private CharSequence ingameTitel = "KBS laser game";
     private OrthographicCamera cam;
     private BitmapFont font;
     private Skin skin;
     private TextButton buttonSpelen;
-    private TextButton buttonInstellingen;
+    private TextButton buttonLevel2;
+
     private Stage stage;
     private Table tabel;
     private Game game;
@@ -50,9 +50,9 @@ public class levelchoicescreen implements Screen {
 
         skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
 
-        buttonInstellingen = new TextButton("instellingen", skin);
-        buttonInstellingen.setHeight(100);
-        buttonInstellingen.setWidth(500);
+        buttonLevel2 = new TextButton("level 2", skin);
+        buttonLevel2.setHeight(100);
+        buttonLevel2.setWidth(500);
 
         buttonSpelen = new TextButton("level 1", skin);
         buttonSpelen.setWidth(500);
@@ -64,16 +64,16 @@ public class levelchoicescreen implements Screen {
 
             }
         });
-        buttonInstellingen.addListener(new ClickListener(){
+        buttonLevel2.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.log("Clicked", "instellingen");
+                Gdx.app.log("Clicked", "level 2");
             }
         });
         tabel.padTop(30);
         tabel.add(buttonSpelen).padBottom(30);
         tabel.row();
-        tabel.add(buttonInstellingen);
+        tabel.add(buttonLevel2);
 
         stage.addActor(tabel);
 
@@ -88,7 +88,6 @@ public class levelchoicescreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 255,0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         sprite.begin();
-        font.draw(sprite, ingameTitel, 450, 600);
         sprite.end();
         stage.draw();
 
