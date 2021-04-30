@@ -79,18 +79,18 @@ public class Kbsgame extends ApplicationAdapter {
 
     }
 
-    public void spawnenemy() {
-        int randomGetal = MathUtils.random(1, 4);
-        if (randomGetal == 1) {
+    public void spawnenemy(){
+        int randomGetal = MathUtils.random(1,4);
+        if (randomGetal ==1) {
             spawnEnemyLeft();
         }
-        if (randomGetal == 2) {
+        if (randomGetal == 2){
             spawnEnemyDown();
         }
-        if (randomGetal == 3) {
+        if (randomGetal == 3){
             spawnEnemyUp();
         }
-        if (randomGetal == 4) {
+        if (randomGetal == 4){
             spawnEnemyRight();
         }
     }
@@ -104,7 +104,6 @@ public class Kbsgame extends ApplicationAdapter {
         enemysLeft.add(enemyL);
         laatsteEnemy = TimeUtils.nanoTime();
     }
-
     private void spawnEnemyUp() {
         Rectangle enemyU = new Rectangle();
         enemyU.x = 550;
@@ -193,9 +192,11 @@ public class Kbsgame extends ApplicationAdapter {
     public void draw() {
         batch.begin();
 
-        font.draw(batch, "0" + String.valueOf(kogels), 1100, 50);
+        font.draw(batch, "kogels 0" + String.valueOf(kogels), 1100, 50);
 
         font.draw(batch, "levens 0" + String.valueOf(levens), 50, 50);
+
+        font.draw(batch, "score " + String.valueOf(score),50 , 850);
 
         if (test == 1) {
             int randomGetal = MathUtils.random(1, 4);
