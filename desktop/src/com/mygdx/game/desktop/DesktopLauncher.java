@@ -11,6 +11,6 @@ public class DesktopLauncher {
 		config.title = "KBSgame";
 		config.width = 1200;
 		config.height = 900;
-		new LwjglApplication(new levelchoicescreen(), config);
+		new LwjglApplication(new Main(), config);
 	}
 }

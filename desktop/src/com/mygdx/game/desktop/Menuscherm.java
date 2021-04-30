@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import javax.management.StandardMBean;
 import java.awt.*;
 
-public class Menuscherm extends Game {
+public class Menuscherm implements Screen {
     private SpriteBatch sprite;
     private CharSequence ingameTitel = "KBS laser game";
     private OrthographicCamera cam;
@@ -28,11 +28,62 @@ public class Menuscherm extends Game {
     private TextButton buttonInstellingen;
     private Stage stage;
     private Table tabel;
+    private Game game;
 
 
+    public Menuscherm(final Game game){
+        this.game = game;
+        stage = new Stage(new ScreenViewport());
 
-    @Override
-    public void create(){
+        cam = new OrthographicCamera();
+        cam.setToOrtho(false, 1200, 900);
+        sprite = new SpriteBatch();
+
+        font = new BitmapFont();
+        font.setColor(Color.BLUE);
+
+        tabel = new Table();
+        tabel.setWidth(stage.getWidth());
+        tabel.align(Align.center| Align.top);
+        tabel.setPosition(0, Gdx.graphics.getHeight());
+
+        skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
+
+        buttonInstellingen = new TextButton("instellingen", skin);
+        buttonInstellingen.setHeight(100);
+        buttonInstellingen.setWidth(500);
+
+        buttonSpelen = new TextButton("spelen", skin);
+        buttonSpelen.setWidth(500);
+        buttonSpelen.setHeight(100);
+        buttonSpelen.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //Gdx.app.log("Clicked", "spelen");
+                game.setScreen(new Kbsgame(game));
+            }
+        });
+        buttonInstellingen.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("Clicked", "instellingen");
+            }
+        });
+        tabel.padTop(30);
+        tabel.add(buttonSpelen).padBottom(30);
+        tabel.row();
+        tabel.add(buttonInstellingen);
+
+        stage.addActor(tabel);
+
+
+        Gdx.input.setInputProcessor(stage);
+
+
+    }
+
+
+  /*  public void create(Game game){
         stage = new Stage(new ScreenViewport());
 
         cam = new OrthographicCamera();
@@ -78,6 +129,35 @@ public class Menuscherm extends Game {
 
         Gdx.input.setInputProcessor(stage);
 
+
+
+    }
+
+
+   */
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
     }
 
     @Override
@@ -87,8 +167,7 @@ public class Menuscherm extends Game {
     }
 
 
-    @Override
-    public void render(){
+    public void render( float delta){
         Gdx.gl.glClearColor(1,1,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         sprite.begin();

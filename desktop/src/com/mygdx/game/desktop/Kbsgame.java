@@ -1,9 +1,6 @@
 package com.mygdx.game.desktop;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -19,7 +16,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import java.awt.*;
 import java.util.Iterator;
 
-public class Kbsgame extends ApplicationAdapter {
+public class Kbsgame implements Screen {
     private Sprite enemyImage;
     private Sprite heroImage;
     private SpriteBatch batch;
@@ -40,14 +37,14 @@ public class Kbsgame extends ApplicationAdapter {
     private int kogels;
     private int levens;
     private int score;
+    private Game game;
 
     private long laatsteEnemy;
     private int test = 1;
 
-    @Override
 
-    public void create() {
-
+    public Kbsgame(Game game) {
+this.game = game;
         // camera
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1200, 900);
@@ -171,8 +168,7 @@ public class Kbsgame extends ApplicationAdapter {
     }
 
 
-    @Override
-    public void render() {
+    public void render(float delta) {
         // achtergrond kleur
         ScreenUtils.clear(0, 0, 128, 0);
         //camera
@@ -410,7 +406,33 @@ public class Kbsgame extends ApplicationAdapter {
             }
         }
 
-        public void dispose () {
+    @Override
+    public void show() {
+
+    }
+
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    public void dispose () {
             batch.dispose();
         }
     }

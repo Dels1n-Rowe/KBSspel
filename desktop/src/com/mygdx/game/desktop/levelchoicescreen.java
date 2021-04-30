@@ -2,6 +2,7 @@ package com.mygdx.game.desktop;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.Color;
@@ -18,7 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class levelchoicescreen extends ApplicationAdapter {
+public class levelchoicescreen extends ApplicationAdapter implements Screen {
     private SpriteBatch sprite;
     private CharSequence ingameTitel = "KBS laser game";
     private OrthographicCamera cam;
@@ -60,7 +61,7 @@ public class levelchoicescreen extends ApplicationAdapter {
                 m.title = "KBSgame";
                 m.width = 1200;
                 m.height = 900;
-                new LwjglApplication(new Kbsgame(), m);
+                //new LwjglApplication(new Kbsgame(), m);
 
             }
         });
@@ -91,6 +92,21 @@ public class levelchoicescreen extends ApplicationAdapter {
         font.draw(sprite, ingameTitel, 450, 600);
         sprite.end();
         stage.draw();
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void render(float delta) {
+
+    }
+
+    @Override
+    public void hide() {
 
     }
 
