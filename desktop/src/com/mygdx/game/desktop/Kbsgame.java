@@ -39,6 +39,7 @@ public class Kbsgame extends ApplicationAdapter {
     private BitmapFont font;
     private int kogels;
     private int levens;
+    private int score;
 
     private long laatsteEnemy;
     private int test = 1;
@@ -68,6 +69,7 @@ public class Kbsgame extends ApplicationAdapter {
         font = new BitmapFont();
         kogels = 6;
         levens = 6;
+        score = 0;
 
 
         //hero
@@ -293,6 +295,7 @@ public class Kbsgame extends ApplicationAdapter {
                 if (raindropS.overlaps(enemyS)){
                     M.remove();
                     N.remove();
+                    score++;
                 }
 
             }
@@ -309,6 +312,7 @@ public class Kbsgame extends ApplicationAdapter {
                 if (raindropW.overlaps(enemyL)) {
                     L.remove();
                     N.remove();
+                    score++;
                 }
 
             }
@@ -327,6 +331,7 @@ public class Kbsgame extends ApplicationAdapter {
                 if(raindropE.overlaps(enemyR)) {
                     iter.remove();
                     k.remove();
+                    score++;
                 }
 
             }
@@ -344,6 +349,7 @@ public class Kbsgame extends ApplicationAdapter {
                     if (raindropN.overlaps(enemyI)) {
                         A.remove();
                         O.remove();
+                        score++;
                     }
 
                 }
