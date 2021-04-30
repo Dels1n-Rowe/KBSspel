@@ -264,7 +264,7 @@ public class Kbsgame extends ApplicationAdapter {
             }
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_5)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
             kogels = 6;
         }
 
