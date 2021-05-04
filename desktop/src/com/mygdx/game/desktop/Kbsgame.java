@@ -68,12 +68,6 @@ public class Kbsgame implements Screen {
         levens = 6;
         score = 0;
 
-
-        //hero
-
-        //enemy
-
-
     }
 
     public void spawnenemy(){
@@ -184,7 +178,7 @@ public class Kbsgame implements Screen {
         walkUp();
         draw();
         if (levens == 0){
-            game.setScreen(new Gameoverscherm(game));
+            game.setScreen(new Gameoverscherm(game, score));
         }
     }
 
@@ -439,5 +433,6 @@ public class Kbsgame implements Screen {
             batch.dispose();
         }
     }
+
 
 
