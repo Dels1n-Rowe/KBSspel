@@ -24,14 +24,17 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
         private BitmapFont font;
         private Skin skin;
         private TextButton buttonSpelen;
+        private TextButton backbutton;
         private TextButton buttonLevel2;
+        private PlayerData Data;
 
         private Stage stage;
         private Table tabel;
         private Game game;
 
-        public PowerupScreen(final Game game){
+        public PowerupScreen(final Game game, final PlayerData data){
             this.game = game;
+            this.Data = data;
             stage = new Stage(new ScreenViewport());
 
             cam = new OrthographicCamera();
@@ -55,24 +58,38 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
             buttonSpelen = new TextButton("piercing", skin);
             buttonSpelen.setWidth(500);
             buttonSpelen.setHeight(100);
-            final PlayerData data = new PlayerData();
+            backbutton = new TextButton("back", skin);
+            backbutton.setWidth(500);
+            backbutton.setHeight(100);
+
+            backbutton.addListener(new ClickListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    game.setScreen(new Menuscherm(game, Data));
+
+                }
+            });
+
+
             buttonSpelen.addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-
+                    Data.setPiercing(true);
 
                 }
             });
             buttonLevel2.addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
+                    Data.setDualshot_1(true);
 
                 }
             });
             tabel.padTop(30);
             tabel.add(buttonSpelen).padBottom(30);
             tabel.row();
-            tabel.add(buttonLevel2);
+            tabel.add(buttonLevel2).padBottom(30);
+            tabel.add(backbutton);
 
             stage.addActor(tabel);
 

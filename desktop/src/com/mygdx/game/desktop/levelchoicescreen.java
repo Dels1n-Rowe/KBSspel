@@ -31,9 +31,11 @@ public class levelchoicescreen implements Screen {
     private Stage stage;
     private Table tabel;
     private Game game;
+    private PlayerData data;
 
-    public levelchoicescreen(final Game game){
+    public levelchoicescreen(final Game game, final PlayerData Data){
         this.game = game;
+        this.data =Data;
         stage = new Stage(new ScreenViewport());
 
         cam = new OrthographicCamera();
@@ -57,7 +59,6 @@ public class levelchoicescreen implements Screen {
         buttonSpelen = new TextButton("level 1", skin);
         buttonSpelen.setWidth(500);
         buttonSpelen.setHeight(100);
-        final PlayerData data = new PlayerData();
         buttonSpelen.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {

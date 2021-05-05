@@ -30,13 +30,14 @@ public class Menuscherm implements Screen {
     private Stage stage;
     private Table tabel;
     private Game game;
+    private PlayerData data;
 
 
-    public Menuscherm(final Game game){
+    public Menuscherm(final Game game, PlayerData Data){
         this.game = game;
+        this.data = Data;
         stage = new Stage(new ScreenViewport());
-
-        cam = new OrthographicCamera();
+                cam = new OrthographicCamera();
         cam.setToOrtho(false, 1200, 900);
         sprite = new SpriteBatch();
 
@@ -61,7 +62,7 @@ public class Menuscherm implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //Gdx.app.log("Clicked", "spelen");
-                game.setScreen(new levelchoicescreen(game));
+                game.setScreen(new levelchoicescreen(game, data));
             }
         });
         buttonInstellingen.addListener(new ClickListener(){
@@ -82,7 +83,7 @@ public class Menuscherm implements Screen {
         powerups.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new PowerupScreen(game));
+                game.setScreen(new PowerupScreen(game,data));
             }
         });
 

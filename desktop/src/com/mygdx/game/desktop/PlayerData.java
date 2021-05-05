@@ -23,6 +23,16 @@ public class PlayerData {
         return dualshot_1;
     }
 
+    public void setPiercing(boolean piercing) {
+        this.piercing = piercing;
+    }
 
+    public void setDualshot_1(boolean dualshot_1) {
+        this.dualshot_1 = dualshot_1;
+    }
+
+    public void setUnlimited_ammo(boolean unlimited_ammo) {
+        this.unlimited_ammo = unlimited_ammo;
+    }
     //UwU this is a comment
 }
