@@ -57,10 +57,11 @@ public class levelchoicescreen implements Screen {
         buttonSpelen = new TextButton("level 1", skin);
         buttonSpelen.setWidth(500);
         buttonSpelen.setHeight(100);
+        final PlayerData data = new PlayerData();
         buttonSpelen.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new Kbsgame(game));
+                game.setScreen(new Kbsgame(game, data));
 
             }
         });

@@ -41,10 +41,12 @@ public class Kbsgame implements Screen {
 
     private long laatsteEnemy;
     private int test = 1;
+    private PlayerData data;
 
 
-    public Kbsgame(Game game) {
+    public Kbsgame(Game game, PlayerData Data) {
 this.game = game;
+this.data = Data;
         // camera
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1200, 900);
@@ -251,6 +253,17 @@ this.game = game;
                 kogels--;
             }
         }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && data.isDualshot_1()) {
+            angle = 270;
+            if (kogels >= 1) {
+                spawnSouthRaindrop();
+                spawnNorthRaindrop();
+                kogels--;
+            }
+        }
+
+
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
             angle = 90;
