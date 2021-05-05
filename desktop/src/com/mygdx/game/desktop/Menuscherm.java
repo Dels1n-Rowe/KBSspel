@@ -26,6 +26,7 @@ public class Menuscherm implements Screen {
     private Skin skin;
     private TextButton buttonSpelen;
     private TextButton buttonInstellingen;
+    private TextButton powerups;
     private Stage stage;
     private Table tabel;
     private Game game;
@@ -72,7 +73,19 @@ public class Menuscherm implements Screen {
         tabel.padTop(30);
         tabel.add(buttonSpelen).padBottom(30);
         tabel.row();
-        tabel.add(buttonInstellingen);
+        tabel.add(buttonInstellingen).padBottom(30);
+        tabel.row();
+        powerups = new TextButton("powerups", skin);
+        powerups.setHeight(100);
+        powerups.setWidth(500);
+        tabel.add(powerups);
+        powerups.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new PowerupScreen(game));
+            }
+        });
+
 
         stage.addActor(tabel);
 
