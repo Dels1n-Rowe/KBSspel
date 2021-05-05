@@ -32,6 +32,7 @@ public class Kbsgame implements Screen {
     private Array<Rectangle> enemysDown;
     private Array<Rectangle> enemysUp;
     private Array<Rectangle> enemysRight;
+    private Array<Rectangle> PiercebulletsS;
     private Rectangle enemyR;
     private BitmapFont font;
     private int kogels;
@@ -60,6 +61,7 @@ this.data = Data;
         bulletsE = new Array<Rectangle>();
         bulletsW = new Array<Rectangle>();
         bulletsN = new Array<Rectangle>();
+        PiercebulletsS = new Array<Rectangle>();
         enemysLeft = new Array<Rectangle>();
         enemysUp = new Array<Rectangle>();
         enemysRight = new Array<Rectangle>();
@@ -169,6 +171,15 @@ this.data = Data;
         bulletsS.add(raindropS);
     }
 
+    private void spawnSouthRaindropPierce() {
+        Rectangle raindropSP = new Rectangle();
+        raindropSP.x = 550;
+        raindropSP.y = 500;
+        raindropSP.width = 64;
+        raindropSP.height = 64;
+        PiercebulletsS.add(raindropSP);
+    }
+
 
     public void render(float delta) {
         // achtergrond kleur
@@ -184,6 +195,7 @@ this.data = Data;
         walkLeft();
         walRight();
         walkUp();
+        pierceDown();
         draw();
     }
 
@@ -246,7 +258,7 @@ this.data = Data;
             }
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && !data.isPiercing()) {
             angle = 270;
             if (kogels >= 1) {
                 spawnSouthRaindrop();
@@ -259,6 +271,13 @@ this.data = Data;
             if (kogels >= 1) {
                 spawnSouthRaindrop();
                 spawnNorthRaindrop();
+                kogels--;
+            }
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && data.isPiercing()) {
+            angle = 270;
+            if (kogels >= 1) {
+                spawnSouthRaindropPierce();
                 kogels--;
             }
         }
@@ -291,6 +310,9 @@ this.data = Data;
         for (Rectangle raindrop : bulletsE) {
             batch.draw(bullet, raindrop.x, raindrop.y);
         }
+        for (Rectangle raindrop : PiercebulletsS) {
+            batch.draw(bullet, raindrop.x, raindrop.y);
+        }
         heroImage.draw(batch);
         batch.end();
     }
@@ -304,6 +326,22 @@ this.data = Data;
                 Rectangle enemyS = N.next();
                 if (raindropS.overlaps(enemyS)){
                     M.remove();
+                    N.remove();
+                    score++;
+                }
+
+            }
+        }
+    }
+
+    public void pierceDown() {
+        for (Iterator<Rectangle> K = PiercebulletsS.iterator(); K.hasNext(); ) {
+            Rectangle raindropSP = K.next();
+            raindropSP.y -= 200 * Gdx.graphics.getDeltaTime();
+            if (raindropSP.y + 64 < 0) K.remove();
+            for (Iterator<Rectangle> N = enemysDown.iterator(); N.hasNext(); ) {
+                Rectangle enemyS = N.next();
+                if (raindropSP.overlaps(enemyS)){
                     N.remove();
                     score++;
                 }
