@@ -5,10 +5,13 @@ public class PlayerData {
     private boolean piercing;
     private boolean unlimited_ammo;
     private boolean dualshot_1;
+    private boolean leech;
     private int score;
+
 
     public PlayerData() {
         //dualshot_1 = true;
+        leech = true;
 
     }
 
@@ -37,6 +40,14 @@ public class PlayerData {
     }
     //UwU this is a comment
 
+
+    public boolean getLeech() {
+        return leech;
+    }
+
+    public void setLeech(boolean leech) {
+        this.leech = leech;
+    }
 
     public int getScore() {
         return score;
