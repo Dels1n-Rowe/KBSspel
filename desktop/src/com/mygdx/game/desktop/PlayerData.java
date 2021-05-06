@@ -5,6 +5,7 @@ public class PlayerData {
     private boolean piercing;
     private boolean unlimited_ammo;
     private boolean dualshot_1;
+    private int score;
 
     public PlayerData() {
         //dualshot_1 = true;
@@ -35,4 +36,13 @@ public class PlayerData {
         this.unlimited_ammo = unlimited_ammo;
     }
     //UwU this is a comment
+
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

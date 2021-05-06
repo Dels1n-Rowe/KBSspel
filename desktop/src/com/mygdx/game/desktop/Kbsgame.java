@@ -52,7 +52,7 @@ this.data = Data;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1200, 900);
         batch = new SpriteBatch();
-        bullet = new Texture(Gdx.files.internal("droplet.png"));
+        bullet = new Texture(Gdx.files.internal("sword-straight.png"));
         heroBody = new Rectangle();
         heroBody.x = 550;
         heroBody.y = 500;
