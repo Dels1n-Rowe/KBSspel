@@ -44,7 +44,7 @@ public class Kbsgame implements Screen {
 
 
     public Kbsgame(Game game) {
-this.game = game;
+        this.game = game;
         // camera
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1200, 900);
@@ -67,12 +67,6 @@ this.game = game;
         kogels = 6;
         levens = 6;
         score = 0;
-
-
-        //hero
-
-        //enemy
-
 
     }
 
@@ -183,6 +177,9 @@ this.game = game;
         walRight();
         walkUp();
         draw();
+        if (levens == 0){
+            game.setScreen(new Gameoverscherm(game, score));
+        }
     }
 
     public void draw() {
@@ -436,5 +433,6 @@ this.game = game;
             batch.dispose();
         }
     }
+
 
 
