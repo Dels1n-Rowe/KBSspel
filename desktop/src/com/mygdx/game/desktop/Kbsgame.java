@@ -1,19 +1,16 @@
 package com.mygdx.game.desktop;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import java.awt.*;
 import java.util.Iterator;
 
 public class Kbsgame implements Screen {
@@ -21,7 +18,10 @@ public class Kbsgame implements Screen {
     private Sprite heroImage;
     private SpriteBatch batch;
     private OrthographicCamera camera;
-    private Texture bullet;
+    private Texture imageBulletRechts;
+    private Texture imageBulletLinks;
+    private Texture imageBulletOmhoog;
+    private Texture imageBulletOmlaag;
     private Rectangle heroBody;
     private float angle;
     private Array<Rectangle> bulletsS;
@@ -49,7 +49,10 @@ public class Kbsgame implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1200, 900);
         batch = new SpriteBatch();
-        bullet = new Texture(Gdx.files.internal("droplet.png"));
+        imageBulletRechts = new Texture(Gdx.files.internal("kogelRechts.png"));
+        imageBulletOmhoog = new Texture(Gdx.files.internal("kogelOmhoog.png"));
+        imageBulletLinks = new Texture(Gdx.files.internal("kogelLinks.png"));
+        imageBulletOmlaag = new Texture(Gdx.files.internal("kogelOmlaag.png"));
         heroBody = new Rectangle();
         heroBody.x = 550;
         heroBody.y = 500;
@@ -264,16 +267,16 @@ public class Kbsgame implements Screen {
         heroImage.setRotation(angle);
 
         for (Rectangle raindrop : bulletsS) {
-            batch.draw(bullet, raindrop.x, raindrop.y);
+            batch.draw(imageBulletOmlaag, raindrop.x, raindrop.y);
         }
         for (Rectangle raindrop : bulletsN) {
-            batch.draw(bullet, raindrop.x, raindrop.y);
+            batch.draw(imageBulletOmhoog, raindrop.x, raindrop.y);
         }
         for (Rectangle raindrop : bulletsW) {
-            batch.draw(bullet, raindrop.x, raindrop.y);
+            batch.draw(imageBulletLinks, raindrop.x, raindrop.y);
         }
         for (Rectangle raindrop : bulletsE) {
-            batch.draw(bullet, raindrop.x, raindrop.y);
+            batch.draw(imageBulletRechts, raindrop.x, raindrop.y);
         }
         heroImage.draw(batch);
         batch.end();
