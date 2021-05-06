@@ -53,7 +53,7 @@ public class Kbsgame implements Screen {
         heroBody = new Rectangle();
         heroBody.x = 550;
         heroBody.y = 500;
-        heroImage = new Sprite(new Texture(Gdx.files.internal("bucket.png")));
+        heroImage = new Sprite(new Texture(Gdx.files.internal("bovenAanzichtHero.png")));
         bulletsS = new Array<Rectangle>();
         bulletsE = new Array<Rectangle>();
         bulletsW = new Array<Rectangle>();
