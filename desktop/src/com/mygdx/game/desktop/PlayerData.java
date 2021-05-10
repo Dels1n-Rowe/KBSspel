@@ -11,9 +11,9 @@ public class PlayerData {
 
 
     public PlayerData() {
-        //dualshot_1 = true;
+        dualshot_1 = true;
         //leech = true;
-        piercing = true;
+       // piercing = true;
 
     }
 

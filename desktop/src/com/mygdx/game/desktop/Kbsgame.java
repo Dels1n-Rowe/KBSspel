@@ -366,6 +366,16 @@ this.data = Data;
             }
         }
 
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && data.isDualshot_1() && !data.isPiercing() && !data.getLeech()) {
+            angle = 270;
+            if (kogels >= 1) {
+                spawnWestRaindrop();
+                spawnEastRaindrop();
+                kogels--;
+            }
+        }
+
+
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && data.getLeech()  && !data.isDualshot_1() && !data.isPiercing()) {
             angle = 270;
