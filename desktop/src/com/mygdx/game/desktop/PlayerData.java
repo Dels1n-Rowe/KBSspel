@@ -6,12 +6,14 @@ public class PlayerData {
     private boolean unlimited_ammo;
     private boolean dualshot_1;
     private boolean leech;
+    private boolean warping;
     private int score;
 
 
     public PlayerData() {
         //dualshot_1 = true;
-        leech = true;
+        //leech = true;
+        piercing = true;
 
     }
 
@@ -56,4 +58,19 @@ public class PlayerData {
     public void setScore(int score) {
         this.score = score;
     }
+
+    public boolean isLeech() {
+        return leech;
+    }
+
+    public boolean isWarping() {
+        return warping;
+    }
+
+    public void setWarping(boolean warping) {
+        this.warping = warping;
+    }
+
+
+
 }
