@@ -180,6 +180,10 @@ public class Kbsgame implements Screen {
         walRight();
         walkUp();
         draw();
+        if(score == 5){
+            game.setScreen(new Victory(game, score));
+        }
+
         if (levens == 0){
             game.setScreen(new Gameoverscherm(game, score));
         }
