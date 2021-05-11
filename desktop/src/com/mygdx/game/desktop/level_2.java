@@ -45,10 +45,12 @@ public class level_2 implements Screen {
 
         private long laatsteEnemy;
         private int test = 1;
+        private PlayerData Data;
 
 
-        public level_2(Game game) {
+        public level_2(Game game,PlayerData data) {
             this.game = game;
+            this.Data = data;
             // camera
             camera = new OrthographicCamera();
             camera.setToOrtho(false, 1200, 900);
@@ -186,11 +188,11 @@ public class level_2 implements Screen {
             walkUp();
             draw();
             if(score == 15){
-                game.setScreen(new Victory(game, score));
+                game.setScreen(new Victory(game, score,Data));
             }
 
             if (levens == 0){
-                game.setScreen(new Gameoverscherm(game, score));
+                game.setScreen(new Gameoverscherm(game, score, Data));
             }
         }
 

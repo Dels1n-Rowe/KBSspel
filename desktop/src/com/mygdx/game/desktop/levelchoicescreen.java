@@ -69,7 +69,7 @@ public class levelchoicescreen implements Screen {
         buttonLevel2.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new level_2(game));
+                game.setScreen(new level_2(game, data));
             }
         });
         tabel.padTop(30);
