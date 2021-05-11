@@ -142,6 +142,7 @@ public class Kbsgame implements Screen {
         raindropW.height = 64;
         bulletsW.add(raindropW);
     }
+    ///dd
 
     private void spawnEastRaindrop() {
         Rectangle raindropE = new Rectangle();
