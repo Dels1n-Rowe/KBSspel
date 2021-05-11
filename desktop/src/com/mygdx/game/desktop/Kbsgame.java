@@ -96,12 +96,6 @@ this.data = Data;
         levens = 6;
         score = 0;
 
-
-        //hero
-
-        //enemy
-
-
     }
 
     public void spawnenemy(){
@@ -138,7 +132,7 @@ this.data = Data;
         enemysUp.add(enemyU);
         laatsteEnemy = TimeUtils.nanoTime();
     }
-
+//
     private void spawnEnemyDown() {
         Rectangle enemyD = new Rectangle();
         enemyD.x = 550;
@@ -176,6 +170,7 @@ this.data = Data;
         raindropW.height = 64;
         bulletsW.add(raindropW);
     }
+    ///dd
 
     private void spawnEastRaindrop() {
         Rectangle raindropE = new Rectangle();
@@ -300,6 +295,13 @@ this.data = Data;
         leechRight();
 
         draw();
+        if(score == 5){
+            game.setScreen(new Victory(game, score));
+        }
+
+        if (levens == 0){
+            game.setScreen(new Gameoverscherm(game, score));
+        }
     }
 
     public void draw() {
