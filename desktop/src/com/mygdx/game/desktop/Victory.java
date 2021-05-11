@@ -30,6 +30,7 @@ public class Victory  implements Screen {
     private int score;
     private TextButton opnieuw;
     private TextButton menu;
+    private TextButton volgende;
     private Skin skin;
     private PlayerData data;
 
@@ -49,6 +50,19 @@ public class Victory  implements Screen {
         opnieuw.setHeight(100);
         opnieuw.setWidth(500);
         opnieuw.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                //Gdx.app.log("Clicked", "spelen");
+                game.setScreen(new Kbsgame(game, data));
+            }
+        });
+
+
+
+        volgende = new TextButton("volgende", skin);
+        volgende.setHeight(100);
+        volgende.setWidth(500);
+        volgende.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //Gdx.app.log("Clicked", "spelen");
@@ -89,9 +103,11 @@ public class Victory  implements Screen {
 
         gameover.setPosition(350, 700);
         gameover.draw(batch);
+        volgende.setPosition(350,350);
 
-        opnieuw.setPosition(350, 350);
-        menu.setPosition(350, 200);
+        opnieuw.setPosition(350, 200);
+        menu.setPosition(350, 50);
+        stage.addActor(volgende);
         stage.addActor(opnieuw);
         stage.addActor(menu);
         stage.draw();
