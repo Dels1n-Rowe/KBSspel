@@ -15,10 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import javax.management.StandardMBean;
-import java.awt.*;
-//
-
 public class Menuscherm implements Screen {
     private SpriteBatch sprite;
     private CharSequence ingameTitel = "KBS laser game";

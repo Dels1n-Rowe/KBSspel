@@ -51,7 +51,6 @@ public class Kbsgame implements Screen {
     private int levens;
     private int score;
     private Game game;
-    private Texture bullet;
 
     private long laatsteEnemy;
     private int test = 1;
@@ -65,11 +64,24 @@ this.data = Data;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1200, 900);
         batch = new SpriteBatch();
-        imageBulletRechts = new Texture(Gdx.files.internal("kogelRechts.png"));
-        imageBulletOmhoog = new Texture(Gdx.files.internal("kogelOmhoog.png"));
-        imageBulletLinks = new Texture(Gdx.files.internal("kogelLinks.png"));
-        imageBulletOmlaag = new Texture(Gdx.files.internal("kogelOmlaag.png"));
-        bullet = new Texture(Gdx.files.internal("kogelOmlaag.png"));
+        if (data.getLeech()){
+            imageBulletRechts = new Texture(Gdx.files.internal("kogelLifestealRechts.png"));
+            imageBulletOmhoog = new Texture(Gdx.files.internal("kogelLifestealOmhoog.png"));
+            imageBulletLinks = new Texture(Gdx.files.internal("kogelLifestealLinks.png"));
+            imageBulletOmlaag = new Texture(Gdx.files.internal("kogelLifestealOmlaag.png"));
+        } else {
+            if (data.isPiercing()){
+                imageBulletRechts = new Texture(Gdx.files.internal("kogelPiercingRechts.png"));
+                imageBulletOmhoog = new Texture(Gdx.files.internal("kogelPiercingOmhoog.png"));
+                imageBulletLinks = new Texture(Gdx.files.internal("kogelPiercingLinks.png"));
+                imageBulletOmlaag = new Texture(Gdx.files.internal("kogelPiercingOmlaag.png"));
+            } else {
+                imageBulletRechts = new Texture(Gdx.files.internal("kogelRechts.png"));
+                imageBulletOmhoog = new Texture(Gdx.files.internal("kogelOmhoog.png"));
+                imageBulletLinks = new Texture(Gdx.files.internal("kogelLinks.png"));
+                imageBulletOmlaag = new Texture(Gdx.files.internal("kogelOmlaag.png"));
+            }
+        }
         heroBody = new Rectangle();
         heroBody.x = 550;
         heroBody.y = 500;
@@ -483,28 +495,28 @@ this.data = Data;
             batch.draw(imageBulletRechts, raindrop.x, raindrop.y);
         }
         for (Rectangle raindrop : PiercebulletsS) {
-            batch.draw(bullet, raindrop.x, raindrop.y);
+            batch.draw(imageBulletOmlaag, raindrop.x, raindrop.y);
         }
         for (Rectangle raindrop : PiercebulletsN) {
-            batch.draw(bullet, raindrop.x, raindrop.y);
+            batch.draw(imageBulletOmhoog, raindrop.x, raindrop.y);
         }
         for (Rectangle raindrop : PiercebulletsW) {
-            batch.draw(bullet, raindrop.x, raindrop.y);
+            batch.draw(imageBulletLinks, raindrop.x, raindrop.y);
         }
         for (Rectangle raindrop : PiercebulletsE) {
-            batch.draw(bullet, raindrop.x, raindrop.y);
+            batch.draw(imageBulletRechts, raindrop.x, raindrop.y);
         }
         for (Rectangle raindrop : LeechbulletsS) {
-            batch.draw(bullet, raindrop.x, raindrop.y);
+            batch.draw(imageBulletOmlaag, raindrop.x, raindrop.y);
         }
         for (Rectangle raindrop : LeechbulletsW) {
-            batch.draw(bullet, raindrop.x, raindrop.y);
+            batch.draw(imageBulletLinks, raindrop.x, raindrop.y);
         }
         for (Rectangle raindrop : LeechbulletsN) {
-            batch.draw(bullet, raindrop.x, raindrop.y);
+            batch.draw(imageBulletOmhoog, raindrop.x, raindrop.y);
         }
         for (Rectangle raindrop : LeechbulletsE) {
-            batch.draw(bullet, raindrop.x, raindrop.y);
+            batch.draw(imageBulletRechts, raindrop.x, raindrop.y);
         }
         heroImage.draw(batch);
         batch.end();
