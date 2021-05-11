@@ -30,7 +30,6 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
         private PlayerData Data;
         private Texture achtergrond;
         private SpriteBatch batch;
-
         private Stage stage;
         private Table tabel;
         private Game game;
@@ -107,6 +106,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
         public void render(float delta){
             batch.begin();
             batch.draw(achtergrond,0,0);
+            font.draw(batch, "score " + String.valueOf(Data.getScore()),50 , 850);
             batch.end();
             sprite.begin();
             sprite.end();

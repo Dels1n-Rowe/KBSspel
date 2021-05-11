@@ -34,6 +34,7 @@ public class Gameoverscherm  implements Screen {
         this.game = game;
         this.Data = data;
         camera = new OrthographicCamera();
+        Data.addScore(score);
         camera.setToOrtho(false, 1200, 900);
         batch = new SpriteBatch();
         gameover = new Sprite(new Texture(Gdx.files.internal("GameOver.png")));

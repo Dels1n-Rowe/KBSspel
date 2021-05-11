@@ -42,6 +42,7 @@ public class Victory  implements Screen {
         batch = new SpriteBatch();
         gameover = new Sprite(new Texture(Gdx.files.internal("Victory.png")));
         stage = new Stage();
+        data.addScore(score);
         font = new BitmapFont();
         this.score = score;
         skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
@@ -66,7 +67,7 @@ public class Victory  implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //Gdx.app.log("Clicked", "spelen");
-                game.setScreen(new Kbsgame(game, data));
+                game.setScreen(new level_2(game, data));
             }
         });
 

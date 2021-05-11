@@ -12,7 +12,7 @@ public class PlayerData {
 
     public PlayerData() {
         //dualshot_1 = true;
-        leech = true;
+        //leech = true;
        //piercing = true;
 
     }
@@ -55,9 +55,10 @@ public class PlayerData {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void addScore(int amount) {
+        this.score = amount + score;
     }
+
 
     public boolean isLeech() {
         return leech;
