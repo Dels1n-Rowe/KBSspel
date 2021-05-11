@@ -28,6 +28,7 @@ public class Victory  implements Screen {
     private int score;
     private TextButton opnieuw;
     private TextButton menu;
+    private TextButton volgende;
     private Skin skin;
 
     public Victory(final Game game, int score){
@@ -40,6 +41,17 @@ public class Victory  implements Screen {
         font = new BitmapFont();
         this.score = score;
         skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
+
+        volgende = new TextButton("volgende", skin);
+        volgende.setHeight(100);
+        volgende.setWidth(500);
+        volgende.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) { ;
+                game.setScreen(new Kbsgame(game));
+            }
+        });
+
 
         opnieuw = new TextButton("opnieuw", skin);
         opnieuw.setHeight(100);
@@ -86,8 +98,10 @@ public class Victory  implements Screen {
         gameover.setPosition(350, 700);
         gameover.draw(batch);
 
-        opnieuw.setPosition(350, 350);
-        menu.setPosition(350, 200);
+        volgende.setPosition(350, 350);
+        opnieuw.setPosition(350, 200);
+        menu.setPosition(350, 50);
+        stage.addActor(volgende);
         stage.addActor(opnieuw);
         stage.addActor(menu);
         stage.draw();
