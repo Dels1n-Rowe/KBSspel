@@ -18,7 +18,10 @@ import com.badlogic.gdx.utils.TimeUtils;
 import java.util.Iterator;
 
 public class level_2 implements Screen {
-        private Sprite enemyImage;
+        private Sprite enemyImageOmhoog;
+        private Sprite enemyImageOmlaag;
+        private Sprite enemyImageRechts;
+        private Sprite enemyImageLinks;
         private Sprite heroImage;
         private SpriteBatch batch;
         private OrthographicCamera camera;
@@ -71,7 +74,10 @@ public class level_2 implements Screen {
             enemysUp = new Array<Rectangle>();
             enemysRight = new Array<Rectangle>();
             enemysDown = new Array<Rectangle>();
-            enemyImage = new Sprite(new Texture(Gdx.files.internal("droplet.png")));
+            enemyImageOmhoog = new Sprite(new Texture(Gdx.files.internal("spiderOmhoog.png")));
+            enemyImageOmlaag = new Sprite(new Texture(Gdx.files.internal("spiderOmlaag.png")));
+            enemyImageLinks = new Sprite(new Texture(Gdx.files.internal("spiderLinks.png")));
+            enemyImageRechts = new Sprite(new Texture(Gdx.files.internal("spiderRechts.png")));
             font = new BitmapFont();
             kogels = 6;
             levens = 6;
@@ -225,16 +231,16 @@ public class level_2 implements Screen {
             if (TimeUtils.nanoTime() - laatsteEnemy > 1000000000) spawnenemy();
 
             for (Rectangle enemy : enemysLeft) {
-                batch.draw(enemyImage, enemy.x, enemy.y);
+                batch.draw(enemyImageRechts, enemy.x, enemy.y);
             }
             for (Rectangle enemy : enemysUp) {
-                batch.draw(enemyImage, enemy.x, enemy.y);
+                batch.draw(enemyImageOmlaag, enemy.x, enemy.y);
             }
             for (Rectangle enemy : enemysDown) {
-                batch.draw(enemyImage, enemy.x, enemy.y);
+                batch.draw(enemyImageOmhoog, enemy.x, enemy.y);
             }
             for (Rectangle enemy : enemysRight) {
-                batch.draw(enemyImage, enemy.x, enemy.y);
+                batch.draw(enemyImageLinks, enemy.x, enemy.y);
             }
 
             heroImage.setPosition(heroBody.x, heroBody.y);
