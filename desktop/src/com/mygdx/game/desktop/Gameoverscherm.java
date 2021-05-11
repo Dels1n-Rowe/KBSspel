@@ -28,9 +28,11 @@ public class Gameoverscherm  implements Screen {
     private TextButton opnieuw;
     private TextButton menu;
     private Skin skin;
+    private PlayerData Data;
 
-    public Gameoverscherm(final Game game, int score){
+    public Gameoverscherm(final Game game, int score, PlayerData data){
         this.game = game;
+        this.Data = data;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1200, 900);
         batch = new SpriteBatch();
@@ -47,7 +49,7 @@ public class Gameoverscherm  implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //Gdx.app.log("Clicked", "spelen");
-                game.setScreen(new Kbsgame(game));
+                game.setScreen(new Kbsgame(game, Data));
             }
         });
 
@@ -58,7 +60,7 @@ public class Gameoverscherm  implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //Gdx.app.log("Clicked", "spelen");
-                game.setScreen(new Menuscherm(game));
+                game.setScreen(new Menuscherm(game, Data));
             }
         });
 
