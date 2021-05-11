@@ -48,7 +48,7 @@ public class Victory  implements Screen {
         volgende.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { ;
-                game.setScreen(new Kbsgame(game));
+                game.setScreen(new level_2(game));
             }
         });
 

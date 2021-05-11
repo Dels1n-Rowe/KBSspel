@@ -185,7 +185,7 @@ public class level_2 implements Screen {
             walRight();
             walkUp();
             draw();
-            if(score == 5){
+            if(score == 15){
                 game.setScreen(new Victory(game, score));
             }
 
@@ -365,7 +365,7 @@ public class level_2 implements Screen {
         public void walkDown () {
             for (Iterator<Rectangle> iter = enemysUp.iterator(); iter.hasNext(); ) {
                 Rectangle enemyU = iter.next();
-                enemyU.y -= 100 * Gdx.graphics.getDeltaTime();
+                enemyU.y -= 150 * Gdx.graphics.getDeltaTime();
                 if (enemyU.y + 64 < 0) iter.remove();
                 if (enemyU.y <= 500) {
                     iter.remove();
@@ -378,7 +378,7 @@ public class level_2 implements Screen {
         public void walkUp () {
             for (Iterator<Rectangle> iter = enemysDown.iterator(); iter.hasNext(); ) {
                 Rectangle enemyD = iter.next();
-                enemyD.y += 150 * Gdx.graphics.getDeltaTime();
+                enemyD.y += 170 * Gdx.graphics.getDeltaTime();
                 if (enemyD.y + 64 < 0) iter.remove();
                 if (enemyD.y >= 500) {
                     iter.remove();
@@ -391,7 +391,7 @@ public class level_2 implements Screen {
         public void walkLeft () {
             for (Iterator<Rectangle> iter = enemysRight.iterator(); iter.hasNext(); ) {
                 Rectangle enemyR = iter.next();
-                enemyR.x -= 100 * Gdx.graphics.getDeltaTime();
+                enemyR.x -= 500 * Gdx.graphics.getDeltaTime();
                 if (enemyR.y + 64 < 0) iter.remove();
                 if (enemyR.x <= 550) {
                     iter.remove();
@@ -404,7 +404,7 @@ public class level_2 implements Screen {
         public void walRight () {
             for (Iterator<Rectangle> iter = enemysLeft.iterator(); iter.hasNext(); ) {
                 Rectangle enemyL = iter.next();
-                enemyL.x += 150 * Gdx.graphics.getDeltaTime();
+                enemyL.x += 50 * Gdx.graphics.getDeltaTime();
                 if (enemyL.y + 64 < 0) iter.remove();
                 if (enemyL.x >= 550) {
                     iter.remove();
