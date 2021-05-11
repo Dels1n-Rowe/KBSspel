@@ -254,6 +254,10 @@ this.data = Data;
         pierceEast();
         pierceNorth();
         leechDown();
+        //leechNorth();
+        //leechEast();
+        //leechWest();
+
         draw();
     }
 
