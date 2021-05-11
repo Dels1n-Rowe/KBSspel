@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import javax.management.StandardMBean;
 import java.awt.*;
+//
 
 public class Menuscherm implements Screen {
     private SpriteBatch sprite;
