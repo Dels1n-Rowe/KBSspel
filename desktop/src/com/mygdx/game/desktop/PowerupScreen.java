@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -27,6 +28,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
         private TextButton backbutton;
         private TextButton buttonLevel2;
         private PlayerData Data;
+        private Texture achtergrond;
+        private SpriteBatch batch;
 
         private Stage stage;
         private Table tabel;
@@ -36,6 +39,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
             this.game = game;
             this.Data = data;
             stage = new Stage(new ScreenViewport());
+            batch = new SpriteBatch();
 
             cam = new OrthographicCamera();
             cam.setToOrtho(false, 1200, 900);
@@ -96,13 +100,14 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
             Gdx.input.setInputProcessor(stage);
 
-
+            achtergrond = new Texture(Gdx.files.internal("ratAchtergrond.png"));
 
         }
 
         public void render(float delta){
-            Gdx.gl.glClearColor(0, 0, 255,0);
-            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            batch.begin();
+            batch.draw(achtergrond,0,0);
+            batch.end();
             sprite.begin();
             sprite.end();
             stage.draw();
