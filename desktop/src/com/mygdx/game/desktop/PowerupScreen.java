@@ -24,9 +24,9 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
         private OrthographicCamera cam;
         private BitmapFont font;
         private Skin skin;
-        private TextButton buttonSpelen;
+        private TextButton buttonPiercing;
         private TextButton backbutton;
-        private TextButton buttonLevel2;
+        private TextButton  buttonDualshot;
         private PlayerData Data;
         private Texture achtergrond;
         private SpriteBatch batch;
@@ -54,19 +54,18 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
             skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
 
-            buttonLevel2 = new TextButton("dualshot", skin);
-            buttonLevel2.setHeight(100);
-            buttonLevel2.setWidth(500);
+            buttonDualshot = new TextButton("dualshot, 10 credits", skin);
+            buttonDualshot.setHeight(100);
+            buttonDualshot.setWidth(500);
 
-            buttonSpelen = new TextButton("piercing", skin);
-            buttonSpelen.setWidth(500);
-            buttonSpelen.setHeight(100);
+            buttonPiercing = new TextButton("piercing, 10 credits", skin);
+            buttonPiercing.setWidth(500);
+            buttonPiercing.setHeight(100);
             backbutton = new TextButton("back", skin);
             backbutton.setWidth(500);
             backbutton.setHeight(100);
 
             backbutton.addListener(new ClickListener(){
-                @Override
                 public void clicked(InputEvent event, float x, float y) {
                     game.setScreen(new Menuscherm(game, Data));
 
@@ -74,24 +73,28 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
             });
 
 
-            buttonSpelen.addListener(new ClickListener(){
-                @Override
+            buttonPiercing.addListener(new ClickListener(){
                 public void clicked(InputEvent event, float x, float y) {
-                    Data.setPiercing(true);
-
+                    if (Data.getScore() > 10) {
+                        Data.setPiercing(true);
+                        Data.addScore(-10);
+                    }
                 }
             });
-            buttonLevel2.addListener(new ClickListener(){
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    Data.setDualshot_1(true);
 
+            buttonDualshot.addListener(new ClickListener(){
+                public void clicked(InputEvent event, float x, float y) {
+                    if (Data.getScore() > 10) {
+                        Data.setDualshot_1(true);
+                        Data.addScore(-10);
+                    }
                 }
             });
+
             tabel.padTop(30);
-            tabel.add(buttonSpelen).padBottom(30);
+            tabel.add(buttonDualshot).padBottom(30);
             tabel.row();
-            tabel.add(buttonLevel2).padBottom(30);
+            tabel.add(buttonPiercing).padBottom(30);
             tabel.add(backbutton);
 
             stage.addActor(tabel);
@@ -106,7 +109,9 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
         public void render(float delta){
             batch.begin();
             batch.draw(achtergrond,0,0);
-            font.draw(batch, "score " + String.valueOf(Data.getScore()),50 , 850);
+            font.getData().setScale(2,2);
+            font.draw(batch, "credits " + String.valueOf(Data.getScore()),50 , 850);
+            font.draw(batch,"squeeek!, what can i get for you?", 100, 100);
             batch.end();
             sprite.begin();
             sprite.end();
