@@ -296,11 +296,11 @@ this.data = Data;
 
         draw();
         if(score == 5){
-            game.setScreen(new Victory(game, score));
+            game.setScreen(new Victory(game, score,data));
         }
 
         if (levens == 0){
-            game.setScreen(new Gameoverscherm(game, score));
+            game.setScreen(new Gameoverscherm(game, score, data));
         }
     }
 

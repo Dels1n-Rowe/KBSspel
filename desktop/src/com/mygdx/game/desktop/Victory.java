@@ -16,6 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import javax.xml.crypto.Data;
+
 public class Victory  implements Screen {
 
     private Game game;
@@ -29,9 +31,11 @@ public class Victory  implements Screen {
     private TextButton opnieuw;
     private TextButton menu;
     private Skin skin;
+    private PlayerData data;
 
-    public Victory(final Game game, int score){
+    public Victory(final Game game, int score, PlayerData DAta){
         this.game = game;
+        this.data = DAta;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1200, 900);
         batch = new SpriteBatch();
@@ -48,7 +52,7 @@ public class Victory  implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //Gdx.app.log("Clicked", "spelen");
-                game.setScreen(new Kbsgame(game));
+                game.setScreen(new Kbsgame(game, data));
             }
         });
 
@@ -59,7 +63,7 @@ public class Victory  implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //Gdx.app.log("Clicked", "spelen");
-                game.setScreen(new Menuscherm(game));
+                game.setScreen(new Menuscherm(game, data));
             }
         });
 
