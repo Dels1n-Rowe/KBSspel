@@ -22,6 +22,7 @@ public class Kbsgame implements Screen {
     private Sprite heroImage;
     private SpriteBatch batch;
     private OrthographicCamera camera;
+    private Texture achtergrond;
     private Texture imageBulletRechts;
     private Texture imageBulletLinks;
     private Texture imageBulletOmhoog;
@@ -85,6 +86,7 @@ this.data = Data;
         heroBody = new Rectangle();
         heroBody.x = 550;
         heroBody.y = 500;
+        achtergrond = new Texture(Gdx.files.internal("achtergrond.png"));
         heroImage = new Sprite(new Texture(Gdx.files.internal("bovenAanzichtHero.png")));
         bulletsS = new Array<Rectangle>();
         bulletsE = new Array<Rectangle>();
@@ -318,6 +320,7 @@ this.data = Data;
 
     public void draw() {
         batch.begin();
+        batch.draw(achtergrond,0,0);
 
         font.draw(batch, "kogels 0" + String.valueOf(kogels), 1100, 50);
 
