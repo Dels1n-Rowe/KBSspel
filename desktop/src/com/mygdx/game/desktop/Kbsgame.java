@@ -104,7 +104,7 @@ public class Kbsgame implements Screen {
         enemysUp.add(enemyU);
         laatsteEnemy = TimeUtils.nanoTime();
     }
-
+//
     private void spawnEnemyDown() {
         Rectangle enemyD = new Rectangle();
         enemyD.x = 550;
