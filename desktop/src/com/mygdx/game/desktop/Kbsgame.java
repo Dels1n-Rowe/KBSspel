@@ -33,8 +33,11 @@ public class Kbsgame implements Screen {
     private Array<Rectangle> enemysDown;
     private Array<Rectangle> enemysUp;
     private Array<Rectangle> enemysRight;
-    private Array<Rectangle> PiercebulletsS;
     private Array<Rectangle> LeechbulletsS;
+    private Array<Rectangle> LeechbulletsW;
+    private Array<Rectangle> LeechbulletsN;
+    private Array<Rectangle> LeechbulletsE;
+    private Array<Rectangle> PiercebulletsS;
     private Array<Rectangle> PiercebulletsW;
     private Array<Rectangle> PiercebulletsE;
     private Array<Rectangle> PiercebulletsN;
@@ -72,6 +75,9 @@ this.data = Data;
         PiercebulletsE = new Array<Rectangle>();
         PiercebulletsN = new Array<Rectangle>();
         LeechbulletsS = new Array<Rectangle>();
+        LeechbulletsN = new Array<Rectangle>();
+        LeechbulletsW = new Array<Rectangle>();
+        LeechbulletsE = new Array<Rectangle>();
         enemysLeft = new Array<Rectangle>();
         enemysUp = new Array<Rectangle>();
         enemysRight = new Array<Rectangle>();
@@ -228,6 +234,33 @@ this.data = Data;
         LeechbulletsS.add(raindropSP);
     }
 
+    private void spawnNorthRaindropLeech() {
+        Rectangle raindropSP = new Rectangle();
+        raindropSP.x = 550;
+        raindropSP.y = 500;
+        raindropSP.width = 64;
+        raindropSP.height = 64;
+        LeechbulletsN.add(raindropSP);
+    }
+
+    private void spawnEastRaindropLeech() {
+        Rectangle raindropSP = new Rectangle();
+        raindropSP.x = 550;
+        raindropSP.y = 500;
+        raindropSP.width = 64;
+        raindropSP.height = 64;
+        LeechbulletsE.add(raindropSP);
+    }
+
+    private void spawnWestRaindropLeech() {
+        Rectangle raindropSP = new Rectangle();
+        raindropSP.x = 550;
+        raindropSP.y = 500;
+        raindropSP.width = 64;
+        raindropSP.height = 64;
+        LeechbulletsW.add(raindropSP);
+    }
+
     private void spawnWarpdown(){
 
     }
@@ -254,9 +287,9 @@ this.data = Data;
         pierceEast();
         pierceNorth();
         leechDown();
-        //leechNorth();
-        //leechEast();
-        //leechWest();
+        leechUp();
+        leechLeft();
+        leechRight();
 
         draw();
     }
@@ -389,6 +422,30 @@ this.data = Data;
             }
         }
 
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && data.getLeech()  && !data.isDualshot_1() && !data.isPiercing()) {
+            angle = 360;
+            if (kogels >= 1) {
+                spawnWestRaindropLeech();
+                kogels--;
+            }
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && data.getLeech()  && !data.isDualshot_1() && !data.isPiercing()) {
+            angle = 180;
+            if (kogels >= 1) {
+                spawnNorthRaindropLeech();
+                kogels--;
+            }
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && data.getLeech()  && !data.isDualshot_1() && !data.isPiercing()) {
+            angle = 90;
+            if (kogels >= 1) {
+                spawnEastRaindropLeech();
+                kogels--;
+            }
+        }
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)  && !data.isDualshot_1() && !data.isLeech() && !data.isPiercing()) {
             angle = 90;
             if (kogels >= 1) {
@@ -428,6 +485,15 @@ this.data = Data;
             batch.draw(bullet, raindrop.x, raindrop.y);
         }
         for (Rectangle raindrop : LeechbulletsS) {
+            batch.draw(bullet, raindrop.x, raindrop.y);
+        }
+        for (Rectangle raindrop : LeechbulletsW) {
+            batch.draw(bullet, raindrop.x, raindrop.y);
+        }
+        for (Rectangle raindrop : LeechbulletsN) {
+            batch.draw(bullet, raindrop.x, raindrop.y);
+        }
+        for (Rectangle raindrop : LeechbulletsE) {
             batch.draw(bullet, raindrop.x, raindrop.y);
         }
         heroImage.draw(batch);
@@ -477,6 +543,80 @@ this.data = Data;
 
     }
 
+    public void leechUp(){
+        for (Iterator<Rectangle> H = LeechbulletsN.iterator(); H.hasNext(); ) {
+            Rectangle raindropN = H.next();
+            raindropN.y += 200 * Gdx.graphics.getDeltaTime();
+            if (raindropN.y + 64 < 0) H.remove();
+            for (Iterator<Rectangle> W = enemysUp.iterator(); W.hasNext(); ) {
+                Rectangle enemyS = W.next();
+                if (raindropN.overlaps(enemyS)){
+                    W.remove();
+                    H.remove();
+                    score++;
+                    int max = 5;
+                    int min = 1;
+                    double k = Math.floor(Math.random()*(max-min+1)+min);
+                    if(k > 3){
+                        levens++;
+
+                    }
+
+                }
+            }
+        }
+
+    }
+
+    public void leechRight(){
+        for (Iterator<Rectangle> H = LeechbulletsE.iterator(); H.hasNext(); ) {
+            Rectangle raindropS = H.next();
+            raindropS.x += 200 * Gdx.graphics.getDeltaTime();
+            if (raindropS.y + 64 < 0) H.remove();
+            for (Iterator<Rectangle> W = enemysRight.iterator(); W.hasNext(); ) {
+                Rectangle enemyS = W.next();
+                if (raindropS.overlaps(enemyS)){
+                    W.remove();
+                    H.remove();
+                    score++;
+                    int max = 5;
+                    int min = 1;
+                    double k = Math.floor(Math.random()*(max-min+1)+min);
+                    if(k > 3){
+                        levens++;
+
+                    }
+
+                }
+            }
+        }
+
+    }
+
+    public void leechLeft(){
+        for (Iterator<Rectangle> H = LeechbulletsW.iterator(); H.hasNext(); ) {
+            Rectangle raindropS = H.next();
+            raindropS.x -= 200 * Gdx.graphics.getDeltaTime();
+            if (raindropS.y + 64 < 0) H.remove();
+            for (Iterator<Rectangle> W = enemysLeft.iterator(); W.hasNext(); ) {
+                Rectangle enemyS = W.next();
+                if (raindropS.overlaps(enemyS)){
+                    W.remove();
+                    H.remove();
+                    score++;
+                    int max = 5;
+                    int min = 1;
+                    double k = Math.floor(Math.random()*(max-min+1)+min);
+                    if(k > 3){
+                        levens++;
+
+                    }
+
+                }
+            }
+        }
+
+    }
 
 
     public void pierceDown() {
