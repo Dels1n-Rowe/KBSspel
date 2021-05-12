@@ -50,6 +50,7 @@ public class level_2 implements Screen {
         private int test = 1;
         private PlayerData Data;
 
+        private Texture achtergrond;
 
         public level_2(Game game,PlayerData data) {
             this.game = game;
@@ -74,14 +75,15 @@ public class level_2 implements Screen {
             enemysUp = new Array<Rectangle>();
             enemysRight = new Array<Rectangle>();
             enemysDown = new Array<Rectangle>();
-            enemyImageOmhoog = new Sprite(new Texture(Gdx.files.internal("spiderOmhoog.png")));
-            enemyImageOmlaag = new Sprite(new Texture(Gdx.files.internal("spiderOmlaag.png")));
-            enemyImageLinks = new Sprite(new Texture(Gdx.files.internal("spiderLinks.png")));
-            enemyImageRechts = new Sprite(new Texture(Gdx.files.internal("spiderRechts.png")));
+            enemyImageOmhoog = new Sprite(new Texture(Gdx.files.internal("jaguarOmhoog.png")));
+            enemyImageOmlaag = new Sprite(new Texture(Gdx.files.internal("jaguarOmlaag.png")));
+            enemyImageLinks = new Sprite(new Texture(Gdx.files.internal("jaguarLinks.png")));
+            enemyImageRechts = new Sprite(new Texture(Gdx.files.internal("jaguarRechts.png")));
             font = new BitmapFont();
             kogels = 6;
             levens = 6;
             score = 0;
+            achtergrond = new Texture(Gdx.files.internal("achtergrondLevel2.png"));
 
         }
 
@@ -180,7 +182,6 @@ public class level_2 implements Screen {
 
         public void render(float delta) {
             // achtergrond kleur
-            ScreenUtils.clear(0, 0, 128, 0);
             //camera
             camera.update();
             batch.setProjectionMatrix(camera.combined);
@@ -204,6 +205,8 @@ public class level_2 implements Screen {
 
         public void draw() {
             batch.begin();
+
+            batch.draw(achtergrond,0,0);
 
             font.draw(batch, "kogels 0" + String.valueOf(kogels), 1100, 50);
 
