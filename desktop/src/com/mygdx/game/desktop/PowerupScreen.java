@@ -110,10 +110,11 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
             buttonDualshot.addListener(new ClickListener(){
                 public void clicked(InputEvent event, float x, float y) {
-                    if (Data.getScore() > 9) {
+                    if (Data.getScore() > 0) {
                         Data.setDualshot_1(true);
                         Data.addScore(-10);
                         buttonDualshot.setPosition(-1000, -1000);
+
                     }
                 }
             });
