@@ -4,6 +4,7 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -28,7 +29,8 @@ public class Menuscherm implements Screen {
     private Table tabel;
     private Game game;
     private PlayerData data;
-
+    private Texture achtergrond;
+    private SpriteBatch batch;
 
     public Menuscherm(final Game game, PlayerData Data){
         this.game = game;
@@ -38,13 +40,15 @@ public class Menuscherm implements Screen {
         cam.setToOrtho(false, 1200, 900);
         sprite = new SpriteBatch();
 
+        batch = new SpriteBatch();
+        achtergrond = new Texture(Gdx.files.internal("spinnenAchtergrond.png"));
+
         font = new BitmapFont();
         font.setColor(Color.BLUE);
 
         tabel = new Table();
-        tabel.setWidth(stage.getWidth());
-        tabel.align(Align.center| Align.top);
-        tabel.setPosition(0, Gdx.graphics.getHeight());
+        tabel.setPosition(550, 350);
+        //tabel.setWidth(stage.getWidth());
 
         skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
 
@@ -127,11 +131,10 @@ public class Menuscherm implements Screen {
 
 
     public void render( float delta){
-        Gdx.gl.glClearColor(1,1,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        sprite.begin();
-        font.draw(sprite, ingameTitel, 450, 600);
-        sprite.end();
+        batch.begin();
+        batch.draw(achtergrond,0,0);
+        batch.end();
+
         stage.draw();
 
     }
