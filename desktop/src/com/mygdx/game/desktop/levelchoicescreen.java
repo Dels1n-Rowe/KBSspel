@@ -9,6 +9,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -27,11 +28,13 @@ public class levelchoicescreen implements Screen {
     private Skin skin;
     private TextButton buttonSpelen;
     private TextButton buttonLevel2;
+    private SpriteBatch batch;
 
     private Stage stage;
     private Table tabel;
     private Game game;
     private PlayerData data;
+    private Texture achtergrond;
 
     public levelchoicescreen(final Game game, final PlayerData Data){
         this.game = game;
@@ -44,6 +47,9 @@ public class levelchoicescreen implements Screen {
 
         font = new BitmapFont();
         font.setColor(Color.BLUE);
+
+        batch = new SpriteBatch();
+        achtergrond = new Texture(Gdx.files.internal("levelKeuzeAchtergrond.png"));
 
         tabel = new Table();
         tabel.setWidth(stage.getWidth());
@@ -87,8 +93,9 @@ public class levelchoicescreen implements Screen {
     }
 
     public void render(float delta){
-        Gdx.gl.glClearColor(0, 0, 255,0);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        batch.draw(achtergrond, 0 ,0);
+        batch.end();
         sprite.begin();
         sprite.end();
         stage.draw();
