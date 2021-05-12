@@ -75,7 +75,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
             buttonPiercing.addListener(new ClickListener(){
                 public void clicked(InputEvent event, float x, float y) {
-                    if (Data.getScore() > 10) {
+                    if (Data.getScore() > 9) {
                         Data.setPiercing(true);
                         Data.addScore(-10);
                     }
@@ -84,7 +84,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
             buttonDualshot.addListener(new ClickListener(){
                 public void clicked(InputEvent event, float x, float y) {
-                    if (Data.getScore() > 10) {
+                    if (Data.getScore() > 9) {
                         Data.setDualshot_1(true);
                         Data.addScore(-10);
                     }
@@ -96,12 +96,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
             tabel.row();
             tabel.add(buttonPiercing).padBottom(30);
             tabel.add(backbutton);
-
             stage.addActor(tabel);
-
-
             Gdx.input.setInputProcessor(stage);
-
             achtergrond = new Texture(Gdx.files.internal("ratAchtergrond.png"));
 
         }
