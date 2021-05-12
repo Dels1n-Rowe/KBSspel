@@ -1,5 +1,9 @@
 package com.mygdx.game.desktop;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+
 public class PlayerData {
 
     private boolean piercing;
@@ -9,11 +13,23 @@ public class PlayerData {
     private boolean warping;
     private int score;
 
+    private Music soundtrack;
+    private Sound deathsound;
+    private Sound shootsound;
+
 
     public PlayerData() {
         //dualshot_1 = true;
         //leech = true;
        //piercing = true;
+
+        soundtrack = Gdx.audio.newMusic(Gdx.files.internal("Among Us Drip Theme Song Original (Among Us Trap RemixAmogus Meme Music).mp3"));
+        deathsound = Gdx.audio.newSound(Gdx.files.internal("Roblox Death Sound - Sound Effect (HD).mp3"));
+        shootsound = Gdx.audio.newSound(Gdx.files.internal("GUN_FIRE-GoodSoundForYou-820112263.mp3"));
+
+        soundtrack.setLooping(true);
+        soundtrack.play();
+
 
     }
 

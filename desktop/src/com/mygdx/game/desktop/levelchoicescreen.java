@@ -35,6 +35,7 @@ public class levelchoicescreen implements Screen {
     private Game game;
     private PlayerData data;
     private Texture achtergrond;
+    private TextButton backbutton;
 
     public levelchoicescreen(final Game game, final PlayerData Data){
         this.game = game;
@@ -78,10 +79,24 @@ public class levelchoicescreen implements Screen {
                 game.setScreen(new level_2(game, data));
             }
         });
+
+        backbutton = new TextButton("back", skin);
+        backbutton.setWidth(500);
+        backbutton.setHeight(100);
+
+
+        backbutton.addListener(new ClickListener(){
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new Menuscherm(game, Data));
+
+            }
+        });
         tabel.padTop(30);
         tabel.add(buttonSpelen).padBottom(30);
         tabel.row();
-        tabel.add(buttonLevel2);
+        tabel.add(buttonLevel2).padBottom(30);
+        tabel.row();
+        tabel.add(backbutton);
 
         stage.addActor(tabel);
 

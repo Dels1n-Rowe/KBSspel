@@ -1,5 +1,7 @@
 package com.mygdx.game.desktop;
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -56,6 +58,9 @@ public class Kbsgame implements Screen {
     private int test = 1;
     private PlayerData data;
 
+    private Music soundtrack;
+    private Sound deathsound;
+    private Sound shootsound;
 
     public Kbsgame(Game game, PlayerData Data) {
 this.game = game;
@@ -112,7 +117,14 @@ this.data = Data;
         levens = 6;
         score = 0;
 
+        soundtrack = Gdx.audio.newMusic(Gdx.files.internal("Among Us Drip Theme Song Original (Among Us Trap RemixAmogus Meme Music).mp3"));
+        deathsound = Gdx.audio.newSound(Gdx.files.internal("Roblox Death Sound - Sound Effect (HD).mp3"));
+        shootsound = Gdx.audio.newSound(Gdx.files.internal("GUN_FIRE-GoodSoundForYou-820112263.mp3"));
+
+//        soundtrack.setLooping(true);
+//        soundtrack.play();
     }
+
 
     public void spawnenemy(){
         int randomGetal = MathUtils.random(1,4);
@@ -538,6 +550,7 @@ this.data = Data;
                     M.remove();
                     N.remove();
                     score++;
+                    deathsound.play();
                 }
 
             }
