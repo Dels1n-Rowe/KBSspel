@@ -103,10 +103,10 @@ public class level_2 implements Screen {
         enemysUp = new Array<Rectangle>();
         enemysRight = new Array<Rectangle>();
         enemysDown = new Array<Rectangle>();
-        enemyImageOmhoog = new Sprite(new Texture(Gdx.files.internal("spiderOmhoog.png")));
-        enemyImageOmlaag = new Sprite(new Texture(Gdx.files.internal("spiderOmlaag.png")));
-        enemyImageLinks = new Sprite(new Texture(Gdx.files.internal("spiderLinks.png")));
-        enemyImageRechts = new Sprite(new Texture(Gdx.files.internal("spiderRechts.png")));
+        enemyImageOmhoog = new Sprite(new Texture(Gdx.files.internal("jaguarOmhoog.png")));
+        enemyImageOmlaag = new Sprite(new Texture(Gdx.files.internal("jaguarOmlaag.png")));
+        enemyImageLinks = new Sprite(new Texture(Gdx.files.internal("jaguarLinks.png")));
+        enemyImageRechts = new Sprite(new Texture(Gdx.files.internal("jaguarRechts.png")));
         font = new BitmapFont();
         kogels = 6;
         levens = 6;
