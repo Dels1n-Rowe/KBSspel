@@ -33,6 +33,9 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
         private Stage stage;
         private Table tabel;
         private Game game;
+        private TextButton piercechoice;
+        private TextButton dualshotchoice;
+        private TextButton leechButton;
 
         public PowerupScreen(final Game game, final PlayerData data){
             this.game = game;
@@ -58,12 +61,25 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
             buttonDualshot.setHeight(100);
             buttonDualshot.setWidth(500);
 
+            piercechoice = new TextButton("pierce, on", skin);
+            piercechoice.setHeight(100);
+            piercechoice.setWidth(500);
+
+            dualshotchoice = new TextButton("dualshot, on", skin);
+            dualshotchoice.setHeight(100);
+            dualshotchoice.setWidth(500);
+
+            leechButton = new TextButton("leech, 10", skin);
+            leechButton.setHeight(100);
+            leechButton.setWidth(500);
+
             buttonPiercing = new TextButton("piercing, 10 credits", skin);
             buttonPiercing.setWidth(500);
             buttonPiercing.setHeight(100);
             backbutton = new TextButton("back", skin);
             backbutton.setWidth(500);
             backbutton.setHeight(100);
+
 
             backbutton.addListener(new ClickListener(){
                 public void clicked(InputEvent event, float x, float y) {
@@ -72,12 +88,22 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
                 }
             });
 
-
             buttonPiercing.addListener(new ClickListener(){
                 public void clicked(InputEvent event, float x, float y) {
                     if (Data.getScore() > 9) {
                         Data.setPiercing(true);
                         Data.addScore(-10);
+                        buttonPiercing.setPosition(-1000, -1000);
+                    }
+                }
+            });
+
+            leechButton.addListener(new ClickListener(){
+                public void clicked(InputEvent event, float x, float y) {
+                    if (Data.getScore() > 9) {
+                        Data.setLeech(true);
+                        Data.addScore(-10);
+                        leechButton.setPosition(-1000, -1000);
                     }
                 }
             });
@@ -87,6 +113,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
                     if (Data.getScore() > 9) {
                         Data.setDualshot_1(true);
                         Data.addScore(-10);
+                        buttonDualshot.setPosition(-1000, -1000);
                     }
                 }
             });
@@ -95,6 +122,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
             tabel.add(buttonDualshot).padBottom(30);
             tabel.row();
             tabel.add(buttonPiercing).padBottom(30);
+            tabel.add(leechButton).padBottom(30);
             tabel.add(backbutton);
             stage.addActor(tabel);
             Gdx.input.setInputProcessor(stage);
