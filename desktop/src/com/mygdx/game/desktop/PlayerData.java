@@ -12,6 +12,9 @@ public class PlayerData {
     private boolean leech;
     private boolean warping;
     private int score;
+    private boolean leechGekocht = false;
+    private boolean dualshotGekocht = false;
+    private boolean piercingGekocht = false;
 
     private Music soundtrack;
     private Sound deathsound;
@@ -88,6 +91,27 @@ public class PlayerData {
         this.warping = warping;
     }
 
+    public boolean isLeechGekocht() {
+        return leechGekocht;
+    }
 
+    public void setLeechGekocht(boolean leechGekocht) {
+        this.leechGekocht = leechGekocht;
+    }
 
+    public boolean isDualshotGekocht() {
+        return dualshotGekocht;
+    }
+
+    public void setDualshotGekocht(boolean dualshotGekocht) {
+        this.dualshotGekocht = dualshotGekocht;
+    }
+
+    public boolean isPiercingGekocht() {
+        return piercingGekocht;
+    }
+
+    public void setPiercingGekocht(boolean piercingGekocht) {
+        this.piercingGekocht = piercingGekocht;
+    }
 }

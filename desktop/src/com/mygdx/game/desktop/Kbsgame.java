@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
+
 import java.util.Iterator;
 
 public class Kbsgame implements Screen {
@@ -550,7 +551,6 @@ this.data = Data;
                     M.remove();
                     N.remove();
                     score++;
-                    deathsound.play();
                 }
 
             }
