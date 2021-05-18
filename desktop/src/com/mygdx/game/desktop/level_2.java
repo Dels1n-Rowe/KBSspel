@@ -312,7 +312,7 @@ public class level_2 implements Screen {
 
         draw();
         if(score == 15){
-            game.setScreen(new VictoryLevel2(game, score,data));
+            game.setScreen(new Victory(game, score,data,2));
         }
 
         if (levens == 0){

@@ -33,10 +33,12 @@ public class Victory  implements Screen {
     private TextButton volgende;
     private Skin skin;
     private PlayerData data;
+    private int level;
 
-    public Victory(final Game game, int score, PlayerData DAta){
+    public Victory(final Game game, int score, PlayerData DAta, final int level){
         this.game = game;
         this.data = DAta;
+        this.level = level;
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1200, 900);
         batch = new SpriteBatch();
@@ -54,20 +56,35 @@ public class Victory  implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //Gdx.app.log("Clicked", "spelen");
-                game.setScreen(new Kbsgame(game, data));
+                if (level == 1 ) {
+                    game.setScreen(new Kbsgame(game, data));
+                }
+                if (level == 2){
+                    game.setScreen(new level_2(game, data));
+                }
             }
         });
 
 
 
         volgende = new TextButton("volgende", skin);
+        if (level == 3){
+            volgende.setPosition(-1000,-1000);
+        } else {
+            volgende.setPosition(350,350);
+        }
         volgende.setHeight(100);
         volgende.setWidth(500);
         volgende.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //Gdx.app.log("Clicked", "spelen");
-                game.setScreen(new level_2(game, data));
+                if (level == 1) {
+                    game.setScreen(new level_2(game, data));
+                }
+                if (level == 2){
+                    game.setScreen(new level_3(game, data));
+                }
             }
         });
 
@@ -104,7 +121,6 @@ public class Victory  implements Screen {
 
         gameover.setPosition(350, 700);
         gameover.draw(batch);
-        volgende.setPosition(350,350);
 
         opnieuw.setPosition(350, 200);
         menu.setPosition(350, 50);

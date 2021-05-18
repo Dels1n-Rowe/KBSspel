@@ -1,7 +1,5 @@
 package com.mygdx.game.desktop;
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,10 +11,9 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
-
 import java.util.Iterator;
 
-public class Kbsgame implements Screen {
+public class level_3 implements Screen {
     private Sprite enemyImageOmhoog;
     private Sprite enemyImageOmlaag;
     private Sprite enemyImageRechts;
@@ -59,13 +56,10 @@ public class Kbsgame implements Screen {
     private int test = 1;
     private PlayerData data;
 
-    private Music soundtrack;
-    private Sound deathsound;
-    private Sound shootsound;
 
-    public Kbsgame(Game game, PlayerData Data) {
-this.game = game;
-this.data = Data;
+    public level_3(Game game, PlayerData Data) {
+        this.game = game;
+        this.data = Data;
         // camera
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1200, 900);
@@ -91,7 +85,7 @@ this.data = Data;
         heroBody = new Rectangle();
         heroBody.x = 550;
         heroBody.y = 500;
-        achtergrond = new Texture(Gdx.files.internal("achtergrond.png"));
+        achtergrond = new Texture(Gdx.files.internal("achtergrondLevel2.png"));
         heroImage = new Sprite(new Texture(Gdx.files.internal("bovenAanzichtHero.png")));
         bulletsS = new Array<Rectangle>();
         bulletsE = new Array<Rectangle>();
@@ -109,23 +103,16 @@ this.data = Data;
         enemysUp = new Array<Rectangle>();
         enemysRight = new Array<Rectangle>();
         enemysDown = new Array<Rectangle>();
-        enemyImageOmhoog = new Sprite(new Texture(Gdx.files.internal("spiderOmhoog.png")));
-        enemyImageOmlaag = new Sprite(new Texture(Gdx.files.internal("spiderOmlaag.png")));
-        enemyImageLinks = new Sprite(new Texture(Gdx.files.internal("spiderLinks.png")));
-        enemyImageRechts = new Sprite(new Texture(Gdx.files.internal("spiderRechts.png")));
+        enemyImageOmhoog = new Sprite(new Texture(Gdx.files.internal("jaguarOmhoog.png")));
+        enemyImageOmlaag = new Sprite(new Texture(Gdx.files.internal("jaguarOmlaag.png")));
+        enemyImageLinks = new Sprite(new Texture(Gdx.files.internal("jaguarLinks.png")));
+        enemyImageRechts = new Sprite(new Texture(Gdx.files.internal("jaguarRechts.png")));
         font = new BitmapFont();
         kogels = 6;
         levens = 6;
         score = 0;
 
-        soundtrack = Gdx.audio.newMusic(Gdx.files.internal("Among Us Drip Theme Song Original (Among Us Trap RemixAmogus Meme Music).mp3"));
-        deathsound = Gdx.audio.newSound(Gdx.files.internal("Roblox Death Sound - Sound Effect (HD).mp3"));
-        shootsound = Gdx.audio.newSound(Gdx.files.internal("GUN_FIRE-GoodSoundForYou-820112263.mp3"));
-
-//        soundtrack.setLooping(true);
-//        soundtrack.play();
     }
-
 
     public void spawnenemy(){
         int randomGetal = MathUtils.random(1,4);
@@ -161,7 +148,7 @@ this.data = Data;
         enemysUp.add(enemyU);
         laatsteEnemy = TimeUtils.nanoTime();
     }
-//
+    //
     private void spawnEnemyDown() {
         Rectangle enemyD = new Rectangle();
         enemyD.x = 550;
@@ -324,8 +311,8 @@ this.data = Data;
         leechRight();
 
         draw();
-        if(score == 5){
-            game.setScreen(new Victory(game, score,data, 1));
+        if(score == 15){
+            game.setScreen(new Victory(game, score,data,3));
         }
 
         if (levens == 0){
@@ -575,11 +562,11 @@ this.data = Data;
                     if(k > 3){
                         levens++;
 
-                }
+                    }
 
+                }
             }
         }
-    }
 
     }
 
@@ -762,75 +749,75 @@ this.data = Data;
     }
 
 
-        public void shootNorth () {
-            for (Iterator<Rectangle> O = bulletsN.iterator(); O.hasNext(); ) {
-                Rectangle raindropN = O.next();
-                raindropN.y += 200 * Gdx.graphics.getDeltaTime();
-                if (raindropN.y + 64 < 0) O.remove();
-                for (Iterator<Rectangle> A = enemysUp.iterator(); A.hasNext(); ) {
-                    Rectangle enemyI = A.next();
-                    if (raindropN.overlaps(enemyI)) {
-                        A.remove();
-                        O.remove();
-                        score++;
-                    }
+    public void shootNorth () {
+        for (Iterator<Rectangle> O = bulletsN.iterator(); O.hasNext(); ) {
+            Rectangle raindropN = O.next();
+            raindropN.y += 200 * Gdx.graphics.getDeltaTime();
+            if (raindropN.y + 64 < 0) O.remove();
+            for (Iterator<Rectangle> A = enemysUp.iterator(); A.hasNext(); ) {
+                Rectangle enemyI = A.next();
+                if (raindropN.overlaps(enemyI)) {
+                    A.remove();
+                    O.remove();
+                    score++;
+                }
 
-                }
             }
         }
+    }
 
-        public void walkDown () {
-            for (Iterator<Rectangle> iter = enemysUp.iterator(); iter.hasNext(); ) {
-                Rectangle enemyU = iter.next();
-                enemyU.y -= 100 * Gdx.graphics.getDeltaTime();
-                if (enemyU.y + 64 < 0) iter.remove();
-                if (enemyU.y <= 500) {
-                    iter.remove();
-                    if (levens >= 1) {
-                        levens--;
-                    }
+    public void walkDown () {
+        for (Iterator<Rectangle> iter = enemysUp.iterator(); iter.hasNext(); ) {
+            Rectangle enemyU = iter.next();
+            enemyU.y -= 100 * Gdx.graphics.getDeltaTime();
+            if (enemyU.y + 64 < 0) iter.remove();
+            if (enemyU.y <= 500) {
+                iter.remove();
+                if (levens >= 1) {
+                    levens--;
                 }
             }
         }
-        public void walkUp () {
-            for (Iterator<Rectangle> iter = enemysDown.iterator(); iter.hasNext(); ) {
-                Rectangle enemyD = iter.next();
-                enemyD.y += 150 * Gdx.graphics.getDeltaTime();
-                if (enemyD.y + 64 < 0) iter.remove();
-                if (enemyD.y >= 500) {
-                    iter.remove();
-                    if (levens >= 1) {
-                        levens--;
-                    }
+    }
+    public void walkUp () {
+        for (Iterator<Rectangle> iter = enemysDown.iterator(); iter.hasNext(); ) {
+            Rectangle enemyD = iter.next();
+            enemyD.y += 200 * Gdx.graphics.getDeltaTime();
+            if (enemyD.y + 64 < 0) iter.remove();
+            if (enemyD.y >= 500) {
+                iter.remove();
+                if (levens >= 1) {
+                    levens--;
                 }
             }
         }
-        public void walkLeft () {
-            for (Iterator<Rectangle> iter = enemysRight.iterator(); iter.hasNext(); ) {
-                Rectangle enemyR = iter.next();
-                enemyR.x -= 100 * Gdx.graphics.getDeltaTime();
-                if (enemyR.y + 64 < 0) iter.remove();
-                if (enemyR.x <= 550) {
-                    iter.remove();
-                    if (levens >= 1) {
-                        levens--;
-                    }
+    }
+    public void walkLeft () {
+        for (Iterator<Rectangle> iter = enemysRight.iterator(); iter.hasNext(); ) {
+            Rectangle enemyR = iter.next();
+            enemyR.x -= 400 * Gdx.graphics.getDeltaTime();
+            if (enemyR.y + 64 < 0) iter.remove();
+            if (enemyR.x <= 550) {
+                iter.remove();
+                if (levens >= 1) {
+                    levens--;
                 }
             }
         }
-        public void walRight () {
-            for (Iterator<Rectangle> iter = enemysLeft.iterator(); iter.hasNext(); ) {
-                Rectangle enemyL = iter.next();
-                enemyL.x += 150 * Gdx.graphics.getDeltaTime();
-                if (enemyL.y + 64 < 0) iter.remove();
-                if (enemyL.x >= 550) {
-                    iter.remove();
-                    if (levens >= 1) {
-                        levens--;
-                    }
+    }
+    public void walRight () {
+        for (Iterator<Rectangle> iter = enemysLeft.iterator(); iter.hasNext(); ) {
+            Rectangle enemyL = iter.next();
+            enemyL.x += 50 * Gdx.graphics.getDeltaTime();
+            if (enemyL.y + 64 < 0) iter.remove();
+            if (enemyL.x >= 550) {
+                iter.remove();
+                if (levens >= 1) {
+                    levens--;
                 }
             }
         }
+    }
 
     @Override
     public void show() {
@@ -859,9 +846,6 @@ this.data = Data;
     }
 
     public void dispose () {
-            batch.dispose();
-        }
+        batch.dispose();
     }
-
-
-
+}

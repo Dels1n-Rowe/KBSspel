@@ -28,6 +28,7 @@ public class levelchoicescreen implements Screen {
     private Skin skin;
     private TextButton buttonSpelen;
     private TextButton buttonLevel2;
+    private TextButton buttonLevel3;
     private SpriteBatch batch;
 
     private Stage stage;
@@ -63,6 +64,10 @@ public class levelchoicescreen implements Screen {
         buttonLevel2.setHeight(100);
         buttonLevel2.setWidth(500);
 
+        buttonLevel3 = new TextButton("level 3", skin);
+        buttonLevel3.setHeight(100);
+        buttonLevel3.setWidth(500);
+
         buttonSpelen = new TextButton("level 1", skin);
         buttonSpelen.setWidth(500);
         buttonSpelen.setHeight(100);
@@ -77,6 +82,12 @@ public class levelchoicescreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new level_2(game, data));
+            }
+        });
+        buttonLevel3.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new level_3(game, data));
             }
         });
 
@@ -95,6 +106,8 @@ public class levelchoicescreen implements Screen {
         tabel.add(buttonSpelen).padBottom(30);
         tabel.row();
         tabel.add(buttonLevel2).padBottom(30);
+        tabel.row();
+        tabel.add(buttonLevel3).padBottom(30);
         tabel.row();
         tabel.add(backbutton);
 
