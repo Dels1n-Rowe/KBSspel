@@ -312,6 +312,7 @@ public class level_2 implements Screen {
 
         draw();
         if(score == 15){
+            data.setLevel3Unlocked(true);
             game.setScreen(new Victory(game, score,data,2));
         }
 

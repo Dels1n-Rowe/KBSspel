@@ -38,9 +38,9 @@ public class levelchoicescreen implements Screen {
     private Texture achtergrond;
     private TextButton backbutton;
 
-    public levelchoicescreen(final Game game, final PlayerData Data){
+    public levelchoicescreen(final Game game, final PlayerData Data) {
         this.game = game;
-        this.data =Data;
+        this.data = Data;
         stage = new Stage(new ScreenViewport());
 
         cam = new OrthographicCamera();
@@ -55,7 +55,7 @@ public class levelchoicescreen implements Screen {
 
         tabel = new Table();
         tabel.setWidth(stage.getWidth());
-        tabel.align(Align.center| Align.top);
+        tabel.align(Align.center | Align.top);
         tabel.setPosition(0, Gdx.graphics.getHeight());
 
         skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
@@ -64,6 +64,13 @@ public class levelchoicescreen implements Screen {
         buttonLevel2.setHeight(100);
         buttonLevel2.setWidth(500);
 
+
+        if (data.isLevel2Unlocked()) {
+            buttonLevel2.setPosition(350, 600);
+        } else {
+            buttonLevel2.setPosition(1000, 1000);
+        }
+
         buttonLevel3 = new TextButton("level 3", skin);
         buttonLevel3.setHeight(100);
         buttonLevel3.setWidth(500);
@@ -71,6 +78,7 @@ public class levelchoicescreen implements Screen {
         buttonSpelen = new TextButton("level 1", skin);
         buttonSpelen.setWidth(500);
         buttonSpelen.setHeight(100);
+        buttonSpelen.setPosition(350,750);
         buttonSpelen.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -102,14 +110,17 @@ public class levelchoicescreen implements Screen {
 
             }
         });
-        tabel.padTop(30);
-        tabel.add(buttonSpelen).padBottom(30);
-        tabel.row();
-        tabel.add(buttonLevel2).padBottom(30);
-        tabel.row();
-        tabel.add(buttonLevel3).padBottom(30);
-        tabel.row();
-        tabel.add(backbutton);
+        backbutton.setPosition(350,300);
+        //tabel.padTop(30);
+        //tabel.add(buttonSpelen).padBottom(30);
+        //tabel.row();
+        //tabel.add(buttonLevel2).padBottom(30);
+        //tabel.row();
+        //tabel.add(backbutton);
+        stage.addActor(buttonLevel2);
+        stage.addActor(buttonSpelen);
+        stage.addActor(backbutton);
+
 
         stage.addActor(tabel);
 

@@ -15,6 +15,8 @@ public class PlayerData {
     private boolean leechGekocht = false;
     private boolean dualshotGekocht = false;
     private boolean piercingGekocht = false;
+    private boolean level2Unlocked = false;
+    private boolean level3Unlocked = false;
 
     private Music soundtrack;
     private Sound deathsound;
@@ -31,9 +33,25 @@ public class PlayerData {
         shootsound = Gdx.audio.newSound(Gdx.files.internal("GUN_FIRE-GoodSoundForYou-820112263.mp3"));
 
         soundtrack.setLooping(true);
-        soundtrack.play();
+       soundtrack.play();
 
 
+    }
+
+    public boolean isLevel3Unlocked() {
+        return level3Unlocked;
+    }
+
+    public void setLevel3Unlocked(boolean level3Unlocked) {
+        this.level3Unlocked = level3Unlocked;
+    }
+
+    public boolean isLevel2Unlocked() {
+        return level2Unlocked;
+    }
+
+    public void setLevel2Unlocked(boolean level2Unlocked) {
+        this.level2Unlocked = level2Unlocked;
     }
 
     public boolean isPiercing() {

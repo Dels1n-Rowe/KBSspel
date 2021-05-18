@@ -325,6 +325,7 @@ this.data = Data;
 
         draw();
         if(score == 5){
+            data.setLevel2Unlocked(true);
             game.setScreen(new Victory(game, score,data, 1));
         }
 
