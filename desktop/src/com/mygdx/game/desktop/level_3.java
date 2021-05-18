@@ -85,7 +85,7 @@ public class level_3 implements Screen {
         heroBody = new Rectangle();
         heroBody.x = 550;
         heroBody.y = 500;
-        achtergrond = new Texture(Gdx.files.internal("achtergrondLevel2.png"));
+        achtergrond = new Texture(Gdx.files.internal("achtergrondLevel3.png"));
         heroImage = new Sprite(new Texture(Gdx.files.internal("bovenAanzichtHero.png")));
         bulletsS = new Array<Rectangle>();
         bulletsE = new Array<Rectangle>();
@@ -103,10 +103,10 @@ public class level_3 implements Screen {
         enemysUp = new Array<Rectangle>();
         enemysRight = new Array<Rectangle>();
         enemysDown = new Array<Rectangle>();
-        enemyImageOmhoog = new Sprite(new Texture(Gdx.files.internal("jaguarOmhoog.png")));
-        enemyImageOmlaag = new Sprite(new Texture(Gdx.files.internal("jaguarOmlaag.png")));
-        enemyImageLinks = new Sprite(new Texture(Gdx.files.internal("jaguarLinks.png")));
-        enemyImageRechts = new Sprite(new Texture(Gdx.files.internal("jaguarRechts.png")));
+        enemyImageOmhoog = new Sprite(new Texture(Gdx.files.internal("zombieNorth.png")));
+        enemyImageOmlaag = new Sprite(new Texture(Gdx.files.internal("zombieSouth.png")));
+        enemyImageLinks = new Sprite(new Texture(Gdx.files.internal("zombieWest.png")));
+        enemyImageRechts = new Sprite(new Texture(Gdx.files.internal("zombieEast.png")));
         font = new BitmapFont();
         kogels = 6;
         levens = 6;
