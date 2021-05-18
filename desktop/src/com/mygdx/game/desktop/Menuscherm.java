@@ -25,7 +25,7 @@ public class Menuscherm implements Screen {
     private BitmapFont font;
     private Skin skin;
     private TextButton buttonSpelen;
-    private TextButton buttonInstellingen;
+    private TextButton buttonMuziek;
     private TextButton powerups;
     private Stage stage;
     private Table tabel;
@@ -54,9 +54,12 @@ public class Menuscherm implements Screen {
 
         skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
 
-        buttonInstellingen = new TextButton("instellingen", skin);
-        buttonInstellingen.setHeight(100);
-        buttonInstellingen.setWidth(500);
+        buttonMuziek = new TextButton("muziek staat aan", skin);
+        if (data.getMuziek() == false){
+            buttonMuziek.setText("muziek staat uit");
+        }
+        buttonMuziek.setHeight(100);
+        buttonMuziek.setWidth(500);
 
         buttonSpelen = new TextButton("spelen", skin);
         buttonSpelen.setWidth(500);
@@ -68,16 +71,22 @@ public class Menuscherm implements Screen {
                 game.setScreen(new levelchoicescreen(game, data));
             }
         });
-        buttonInstellingen.addListener(new ClickListener(){
+        buttonMuziek.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.log("Clicked", "instellingen");
+                if (data.getMuziek()){
+                    data.MuziekUit();
+                    buttonMuziek.setText("muziek staat uit");
+                } else {
+                    data.muziekAan();
+                    buttonMuziek.setText("muziek staat aan");
+                }
             }
         });
         tabel.padTop(30);
         tabel.add(buttonSpelen).padBottom(30);
         tabel.row();
-        tabel.add(buttonInstellingen).padBottom(30);
+        tabel.add(buttonMuziek).padBottom(30);
         tabel.row();
         powerups = new TextButton("powerups", skin);
         powerups.setHeight(100);

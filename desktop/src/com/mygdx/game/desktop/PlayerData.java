@@ -20,6 +20,8 @@ public class PlayerData {
     private Sound deathsound;
     private Sound shootsound;
 
+    private boolean muziek = true;
+
 //
     public PlayerData() {
         //dualshot_1 = true;
@@ -113,5 +115,20 @@ public class PlayerData {
 
     public void setPiercingGekocht(boolean piercingGekocht) {
         this.piercingGekocht = piercingGekocht;
+    }
+
+    public boolean getMuziek() {
+        return muziek;
+    }
+
+    public void muziekAan(){
+        muziek = true;
+        soundtrack.setLooping(true);
+        soundtrack.play();
+    }
+
+    public void MuziekUit(){
+        muziek = false;
+        soundtrack.stop();
     }
 }
