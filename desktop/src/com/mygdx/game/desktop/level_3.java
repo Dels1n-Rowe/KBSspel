@@ -311,7 +311,7 @@ public class level_3 implements Screen {
         leechRight();
 
         draw();
-        if(score == 15){
+        if(score == 30){
             game.setScreen(new Victory(game, score,data,3));
         }
 
@@ -769,7 +769,7 @@ public class level_3 implements Screen {
     public void walkDown () {
         for (Iterator<Rectangle> iter = enemysUp.iterator(); iter.hasNext(); ) {
             Rectangle enemyU = iter.next();
-            enemyU.y -= 100 * Gdx.graphics.getDeltaTime();
+            enemyU.y -= 500 * Gdx.graphics.getDeltaTime();
             if (enemyU.y + 64 < 0) iter.remove();
             if (enemyU.y <= 500) {
                 iter.remove();
@@ -782,7 +782,7 @@ public class level_3 implements Screen {
     public void walkUp () {
         for (Iterator<Rectangle> iter = enemysDown.iterator(); iter.hasNext(); ) {
             Rectangle enemyD = iter.next();
-            enemyD.y += 200 * Gdx.graphics.getDeltaTime();
+            enemyD.y += 400 * Gdx.graphics.getDeltaTime();
             if (enemyD.y + 64 < 0) iter.remove();
             if (enemyD.y >= 500) {
                 iter.remove();
@@ -808,7 +808,7 @@ public class level_3 implements Screen {
     public void walRight () {
         for (Iterator<Rectangle> iter = enemysLeft.iterator(); iter.hasNext(); ) {
             Rectangle enemyL = iter.next();
-            enemyL.x += 50 * Gdx.graphics.getDeltaTime();
+            enemyL.x += 600 * Gdx.graphics.getDeltaTime();
             if (enemyL.y + 64 < 0) iter.remove();
             if (enemyL.x >= 550) {
                 iter.remove();
