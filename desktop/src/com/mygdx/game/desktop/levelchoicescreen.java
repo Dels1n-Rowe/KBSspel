@@ -65,15 +65,23 @@ public class levelchoicescreen implements Screen {
         buttonLevel2.setWidth(500);
 
 
+        buttonLevel3 = new TextButton("level 3", skin);
+        buttonLevel3.setHeight(100);
+        buttonLevel3.setWidth(500);
+
+
         if (data.isLevel2Unlocked()) {
             buttonLevel2.setPosition(350, 600);
         } else {
             buttonLevel2.setPosition(1000, 1000);
         }
 
-        buttonLevel3 = new TextButton("level 3", skin);
-        buttonLevel3.setHeight(100);
-        buttonLevel3.setWidth(500);
+        if (data.isLevel3Unlocked()) {
+            buttonLevel3.setPosition(350, 450);
+        }else{
+            buttonLevel3.setPosition(100,1000);
+        }
+
 
         buttonSpelen = new TextButton("level 1", skin);
         buttonSpelen.setWidth(500);
@@ -110,7 +118,7 @@ public class levelchoicescreen implements Screen {
 
             }
         });
-        backbutton.setPosition(350,300);
+        backbutton.setPosition(350,250);
         //tabel.padTop(30);
         //tabel.add(buttonSpelen).padBottom(30);
         //tabel.row();
@@ -118,6 +126,7 @@ public class levelchoicescreen implements Screen {
         //tabel.row();
         //tabel.add(backbutton);
         stage.addActor(buttonLevel2);
+        stage.addActor(buttonLevel3);
         stage.addActor(buttonSpelen);
         stage.addActor(backbutton);
 
