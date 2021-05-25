@@ -20,7 +20,6 @@ public class Gameoverscherm  implements Screen {
     private Game game;
     private SpriteBatch batch;
     private OrthographicCamera camera;
-    private SpriteBatch sprite;
     private Stage stage;
     private Sprite gameover;
     private BitmapFont font;
