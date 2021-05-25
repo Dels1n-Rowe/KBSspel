@@ -49,7 +49,6 @@ public class Gameoverscherm  implements Screen {
         opnieuw.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //Gdx.app.log("Clicked", "spelen");
                 game.setScreen(new Kbsgame(game, Data));
             }
         });
@@ -60,7 +59,6 @@ public class Gameoverscherm  implements Screen {
         menu.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //Gdx.app.log("Clicked", "spelen");
                 game.setScreen(new Menuscherm(game, Data));
             }
         });
