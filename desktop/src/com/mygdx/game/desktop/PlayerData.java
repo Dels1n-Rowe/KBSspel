@@ -7,10 +7,8 @@ import com.badlogic.gdx.audio.Sound;
 public class PlayerData {
 
     private boolean piercing;
-    private boolean unlimited_ammo;
     private boolean dualshot_1;
     private boolean leech;
-    private boolean warping;
     private int score;
     private boolean leechGekocht = false;
     private boolean dualshotGekocht = false;
@@ -19,25 +17,14 @@ public class PlayerData {
     private boolean level3Unlocked = false;
 
     private Music soundtrack;
-    private Sound deathsound;
-    private Sound shootsound;
 
     private boolean muziek = true;
 
 //
     public PlayerData() {
-        //dualshot_1 = true;
-        //leech = true;
-       //piercing = true;
-
         soundtrack = Gdx.audio.newMusic(Gdx.files.internal("Among Us Drip Theme Song Original (Among Us Trap RemixAmogus Meme Music).mp3"));
-        deathsound = Gdx.audio.newSound(Gdx.files.internal("Roblox Death Sound - Sound Effect (HD).mp3"));
-        shootsound = Gdx.audio.newSound(Gdx.files.internal("GUN_FIRE-GoodSoundForYou-820112263.mp3"));
-
         soundtrack.setLooping(true);
        soundtrack.play();
-
-
     }
 
     public boolean isLevel3Unlocked() {
@@ -60,10 +47,6 @@ public class PlayerData {
         return piercing;
     }
 
-    public boolean isUnlimited_ammo() {
-        return unlimited_ammo;
-    }
-
     public boolean isDualshot_1() {
         return dualshot_1;
     }
@@ -75,12 +58,6 @@ public class PlayerData {
     public void setDualshot_1(boolean dualshot_1) {
         this.dualshot_1 = dualshot_1;
     }
-
-    public void setUnlimited_ammo(boolean unlimited_ammo) {
-        this.unlimited_ammo = unlimited_ammo;
-    }
-    //UwU this is a comment
-
 
     public boolean getLeech() {
         return leech;
@@ -98,17 +75,8 @@ public class PlayerData {
         this.score = amount + score;
     }
 
-
     public boolean isLeech() {
         return leech;
-    }
-
-    public boolean isWarping() {
-        return warping;
-    }
-
-    public void setWarping(boolean warping) {
-        this.warping = warping;
     }
 
     public boolean isLeechGekocht() {
