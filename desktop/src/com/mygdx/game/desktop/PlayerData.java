@@ -24,11 +24,7 @@ public class PlayerData {
 
     private boolean muziek = true;
 
-//
     public PlayerData() {
-        //dualshot_1 = true;
-        //leech = true;
-       //piercing = true;
 
         soundtrack = Gdx.audio.newMusic(Gdx.files.internal("Among Us Drip Theme Song Original (Among Us Trap RemixAmogus Meme Music).mp3"));
         deathsound = Gdx.audio.newSound(Gdx.files.internal("Roblox Death Sound - Sound Effect (HD).mp3"));
@@ -36,7 +32,6 @@ public class PlayerData {
 
         soundtrack.setLooping(true);
        soundtrack.play();
-
 
     }
 
@@ -79,8 +74,6 @@ public class PlayerData {
     public void setUnlimited_ammo(boolean unlimited_ammo) {
         this.unlimited_ammo = unlimited_ammo;
     }
-    //UwU this is a comment
-
 
     public boolean getLeech() {
         return leech;

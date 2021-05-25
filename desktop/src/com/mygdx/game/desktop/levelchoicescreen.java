@@ -11,10 +11,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class levelchoicescreen implements Screen {
@@ -28,7 +26,6 @@ public class levelchoicescreen implements Screen {
     private SpriteBatch batch;
 
     private Stage stage;
-    private Table tabel;
     private Game game;
     private PlayerData data;
     private Texture achtergrond;
@@ -49,22 +46,21 @@ public class levelchoicescreen implements Screen {
         batch = new SpriteBatch();
         achtergrond = new Texture(Gdx.files.internal("levelKeuzeAchtergrond.png"));
 
-        tabel = new Table();
-        tabel.setWidth(stage.getWidth());
-        tabel.align(Align.center | Align.top);
-        tabel.setPosition(0, Gdx.graphics.getHeight());
-
         skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
+
+        //knop level 2
 
         buttonLevel2 = new TextButton("level 2", skin);
         buttonLevel2.setHeight(100);
         buttonLevel2.setWidth(500);
 
+        // knop level 3
 
         buttonLevel3 = new TextButton("level 3", skin);
         buttonLevel3.setHeight(100);
         buttonLevel3.setWidth(500);
 
+        // het unlocken van level 2
 
         if (data.isLevel2Unlocked()) {
             buttonLevel2.setPosition(350, 600);
@@ -72,12 +68,16 @@ public class levelchoicescreen implements Screen {
             buttonLevel2.setPosition(1000, 1000);
         }
 
+        // het unlocken van level 3
+
         if (data.isLevel3Unlocked()) {
             buttonLevel3.setPosition(350, 450);
         }else{
             buttonLevel3.setPosition(100,1000);
         }
 
+
+        // knop level1
 
         buttonSpelen = new TextButton("level 1", skin);
         buttonSpelen.setWidth(500);
@@ -90,18 +90,25 @@ public class levelchoicescreen implements Screen {
 
             }
         });
+
+        // klikken op knop twee(level3)
+
         buttonLevel2.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new level_2(game, data));
             }
         });
+
+        // klikken op knop drie(level3)
         buttonLevel3.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new level_3(game, data));
             }
         });
+
+        // knop om terug te gaan
 
         backbutton = new TextButton("back", skin);
         backbutton.setWidth(500);
@@ -115,18 +122,15 @@ public class levelchoicescreen implements Screen {
             }
         });
         backbutton.setPosition(350,250);
+
+        // het teken van de knoppen op het scherm
+
         stage.addActor(buttonLevel2);
         stage.addActor(buttonLevel3);
         stage.addActor(buttonSpelen);
         stage.addActor(backbutton);
 
-
-        stage.addActor(tabel);
-
-
         Gdx.input.setInputProcessor(stage);
-
-
 
     }
 
