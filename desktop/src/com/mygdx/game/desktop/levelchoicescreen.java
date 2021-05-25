@@ -119,12 +119,6 @@ public class levelchoicescreen implements Screen {
             }
         });
         backbutton.setPosition(350,250);
-        //tabel.padTop(30);
-        //tabel.add(buttonSpelen).padBottom(30);
-        //tabel.row();
-        //tabel.add(buttonLevel2).padBottom(30);
-        //tabel.row();
-        //tabel.add(backbutton);
         stage.addActor(buttonLevel2);
         stage.addActor(buttonLevel3);
         stage.addActor(buttonSpelen);
