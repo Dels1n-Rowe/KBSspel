@@ -122,8 +122,6 @@ this.data = Data;
         deathsound = Gdx.audio.newSound(Gdx.files.internal("Roblox Death Sound - Sound Effect (HD).mp3"));
         shootsound = Gdx.audio.newSound(Gdx.files.internal("GUN_FIRE-GoodSoundForYou-820112263.mp3"));
 
-//        soundtrack.setLooping(true);
-//        soundtrack.play();
     }
 
 
