@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -52,6 +51,8 @@ public class PowerupScreen  implements Screen {
 
             skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
 
+            // knoppen dualshot
+
             buttonDualshot = new TextButton("dualshot, 10 credits", skin);
             buttonDualshot.setHeight(100);
             buttonDualshot.setWidth(500);
@@ -67,6 +68,8 @@ public class PowerupScreen  implements Screen {
             dualshotUit.setWidth(500);
             dualshotUit.setPosition(-1000,-1000);
 
+            // knoppen leech
+
             leechButton = new TextButton("leech, 10 credits", skin);
             leechButton.setHeight(100);
             leechButton.setWidth(500);
@@ -81,6 +84,8 @@ public class PowerupScreen  implements Screen {
             leechUit.setHeight(100);
             leechUit.setWidth(500);
             leechUit.setPosition(-1000,-1000);
+
+            // knoppen piercing
 
             buttonPiercing = new TextButton("piercing, 10 credits", skin);
             buttonPiercing.setWidth(500);
@@ -101,6 +106,8 @@ public class PowerupScreen  implements Screen {
             backbutton.setWidth(500);
             backbutton.setHeight(100);
             backbutton.setPosition(350, 300);
+
+            // opnieuw naar het scherm toe en dus het goed zetten van de knoppen
 
             if (data.isDualshotGekocht()){
                 buttonDualshot.setPosition(-1000,-1000);
@@ -138,6 +145,8 @@ public class PowerupScreen  implements Screen {
 
                 }
             });
+
+            // piercing kopen en bij behorende knoppen
 
             buttonPiercing.addListener(new ClickListener(){
                 public void clicked(InputEvent event, float x, float y) {
@@ -187,6 +196,8 @@ public class PowerupScreen  implements Screen {
                 }
             });
 
+            // leech kopen en bij behorende knoppen
+
             leechButton.addListener(new ClickListener(){
                 public void clicked(InputEvent event, float x, float y) {
                     if (Data.getScore() > 9) {
@@ -235,6 +246,8 @@ public class PowerupScreen  implements Screen {
                 }
             });
 
+            // dualshot kopen en bijbehorende knoppen
+
             buttonDualshot.addListener(new ClickListener(){
                 public void clicked(InputEvent event, float x, float y) {
                     if (Data.getScore() > 0) {
@@ -282,6 +295,8 @@ public class PowerupScreen  implements Screen {
                     }
                 }
             });
+
+            // alle knoppen neer zetten op het scherm
 
             stage.addActor(buttonDualshot);
             stage.addActor(buttonPiercing);

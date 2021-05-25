@@ -16,8 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-import javax.xml.crypto.Data;
-
 public class Victory  implements Screen {
 
     private Game game;
@@ -49,13 +47,14 @@ public class Victory  implements Screen {
         this.score = score;
         skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
 
+        // knop om opnieuw te gaan
+
         opnieuw = new TextButton("opnieuw", skin);
         opnieuw.setHeight(100);
         opnieuw.setWidth(500);
         opnieuw.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //Gdx.app.log("Clicked", "spelen");
                 if (level == 1 ) {
                     game.setScreen(new Kbsgame(game, data));
                 }
@@ -66,6 +65,7 @@ public class Victory  implements Screen {
         });
 
 
+        // knop om eht volgende level te spelen
 
         volgende = new TextButton("volgende", skin);
         if (level == 3){
@@ -78,7 +78,6 @@ public class Victory  implements Screen {
         volgende.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //Gdx.app.log("Clicked", "spelen");
                 if (level == 1) {
                     game.setScreen(new level_2(game, data));
                 }
@@ -88,13 +87,14 @@ public class Victory  implements Screen {
             }
         });
 
+        // menu knop
+
         menu = new TextButton("naar het menu", skin);
         menu.setHeight(100);
         menu.setWidth(500);
         menu.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //Gdx.app.log("Clicked", "spelen");
                 game.setScreen(new Menuscherm(game, data));
             }
         });

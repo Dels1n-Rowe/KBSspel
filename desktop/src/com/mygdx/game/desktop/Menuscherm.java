@@ -1,10 +1,7 @@
 package com.mygdx.game.desktop;
 
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -15,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class Menuscherm implements Screen {
@@ -50,9 +46,10 @@ public class Menuscherm implements Screen {
 
         tabel = new Table();
         tabel.setPosition(550, 350);
-        //tabel.setWidth(stage.getWidth());
 
         skin = new Skin(Gdx.files.internal("flat-earth-ui.json"));
+
+        // muziek knop
 
         buttonMuziek = new TextButton("muziek staat aan", skin);
         if (data.getMuziek() == false){
@@ -67,7 +64,6 @@ public class Menuscherm implements Screen {
         buttonSpelen.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //Gdx.app.log("Clicked", "spelen");
                 game.setScreen(new levelchoicescreen(game, data));
             }
         });
@@ -83,6 +79,9 @@ public class Menuscherm implements Screen {
                 }
             }
         });
+
+        //tabel op alles netjes te line uppen
+
         tabel.padTop(30);
         tabel.add(buttonSpelen).padBottom(30);
         tabel.row();
