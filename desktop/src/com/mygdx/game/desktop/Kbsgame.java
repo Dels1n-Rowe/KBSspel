@@ -304,6 +304,7 @@ this.data = Data;
         //camera
         camera.update();
         batch.setProjectionMatrix(camera.combined);
+        // deze code zorgt ervoor dat als de kogels in worden getekend, ze ook direct hun gedrag kunnen uitvoeren.
         shootWest();
         shootEast();
         shootNorth();
@@ -322,6 +323,7 @@ this.data = Data;
         leechRight();
 
         draw();
+        // de code die victory of verlies bepaald gebaseerd op hoeveel levens je nog hebt.
         if(score == 5){
             data.setLevel2Unlocked(true);
             game.setScreen(new Victory(game, score,data, 1));
@@ -342,6 +344,8 @@ this.data = Data;
 
         font.draw(batch, "score " + String.valueOf(score),50 , 850);
 
+        // de code die de gebaseerd op een random waarde een enemy op een bepaalde locatie plaatst
+
         if (test == 1) {
             int randomGetal = MathUtils.random(1, 4);
             if (randomGetal == 1) {
@@ -361,6 +365,9 @@ this.data = Data;
 
         if (TimeUtils.nanoTime() - laatsteEnemy > 1000000000) spawnenemy();
 
+
+        // de code die de enemies op het scherm tekent
+
         for (Rectangle enemy : enemysLeft) {
             batch.draw(enemyImageRechts, enemy.x, enemy.y);
         }
@@ -375,6 +382,7 @@ this.data = Data;
         }
 
         heroImage.setPosition(heroBody.x, heroBody.y);
+        //hieronder staat de code die de player inputs bestuurd, de verschillende booleans uit playerdata regeled welke versie van een input word gebruikt.
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && !data.isPiercing() && !data.getLeech() && !data.isPiercing()) {
             angle = 360;
@@ -498,6 +506,7 @@ this.data = Data;
         }
 
         heroImage.setRotation(angle);
+        // hieronder staat de code die de kogels uit de verschillende arrays tekent
 
         for (Rectangle raindrop : bulletsS) {
             batch.draw(imageBulletOmlaag, raindrop.x, raindrop.y);
@@ -538,6 +547,7 @@ this.data = Data;
         heroImage.draw(batch);
         batch.end();
     }
+    // hieronder staat de code die de kogels verplaats over het scherm en de collision ervan regelt.
 
     public void shootDown() {
         for (Iterator<Rectangle> M = bulletsS.iterator(); M.hasNext(); ) {
@@ -830,7 +840,7 @@ this.data = Data;
                 }
             }
         }
-
+// hieronder staan functies die niet worden gebruikt maar wel moeten blijven wegens de implementatie van de screen class.
     @Override
     public void show() {
 

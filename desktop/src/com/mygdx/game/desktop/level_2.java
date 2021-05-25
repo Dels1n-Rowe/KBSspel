@@ -186,7 +186,6 @@ public class level_2 implements Screen {
         raindropW.height = 64;
         bulletsW.add(raindropW);
     }
-    ///dd
 
     private void spawnEastRaindrop() {
         Rectangle raindropE = new Rectangle();
@@ -240,9 +239,6 @@ public class level_2 implements Screen {
         raindropNP.height = 64;
         PiercebulletsN.add(raindropNP);
     }
-
-
-
 
     private void spawnSouthRaindropLeech() {
         Rectangle raindropSP = new Rectangle();
